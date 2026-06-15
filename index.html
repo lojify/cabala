@@ -723,6 +723,159 @@
         </div>
     </section>
 
+    <!-- ===== BOLHAS FLUTUANTES — Continue a Travessia ===== -->
+    <div class="lj-bubbles" aria-label="Continue a travessia">
+        <p class="lj-bubbles-label">Continue a Travessia</p>
+        <div class="lj-bubbles-row">
+            <a href="/calculadora" class="lj-bubble" aria-label="Numerologia">
+                <span class="lj-bubble-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="21" stroke="url(#ljGoldRing1)" stroke-width="1.4" opacity="0.55"/>
+                        <path d="M24 9 L36 31 L12 31 Z" stroke="url(#ljGoldRing1)" stroke-width="1.3" fill="none" opacity="0.85"/>
+                        <path d="M24 39 L12 17 L36 17 Z" stroke="url(#ljGoldRing1)" stroke-width="1.3" fill="none" opacity="0.55"/>
+                        <circle cx="24" cy="24" r="2.4" fill="#e8c882"/>
+                        <defs>
+                            <linearGradient id="ljGoldRing1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#e8c882"/>
+                                <stop offset="1" stop-color="#cda45e"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <span class="lj-bubble-text">Numerologia</span>
+            </a>
+            <a href="/calculadora#desafio" class="lj-bubble" aria-label="Desafio 7 Dias">
+                <span class="lj-bubble-icon">
+                    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="24" cy="24" r="21" stroke="url(#ljGoldRing2)" stroke-width="1.4" opacity="0.55"/>
+                        <rect x="12" y="13" width="24" height="22" rx="2" stroke="url(#ljGoldRing2)" stroke-width="1.3" fill="none" opacity="0.85"/>
+                        <line x1="12" y1="19" x2="36" y2="19" stroke="url(#ljGoldRing2)" stroke-width="1.3" opacity="0.85"/>
+                        <line x1="17" y1="10" x2="17" y2="15" stroke="url(#ljGoldRing2)" stroke-width="1.3" opacity="0.85"/>
+                        <line x1="31" y1="10" x2="31" y2="15" stroke="url(#ljGoldRing2)" stroke-width="1.3" opacity="0.85"/>
+                        <circle cx="18" cy="24" r="1.4" fill="#e8c882"/>
+                        <circle cx="24" cy="24" r="1.4" fill="#e8c882"/>
+                        <circle cx="30" cy="24" r="1.4" fill="#e8c882"/>
+                        <circle cx="18" cy="30" r="1.4" fill="#e8c882" opacity="0.6"/>
+                        <circle cx="24" cy="30" r="1.4" fill="#e8c882" opacity="0.6"/>
+                        <defs>
+                            <linearGradient id="ljGoldRing2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                <stop offset="0" stop-color="#e8c882"/>
+                                <stop offset="1" stop-color="#cda45e"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <span class="lj-bubble-text">Desafio 7 Dias</span>
+            </a>
+        </div>
+    </div>
+    <style>
+        .lj-bubbles {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .lj-bubbles-label {
+            font-family: var(--display);
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            opacity: 0.75;
+            margin: 0 4px 2px 0;
+            text-align: right;
+            text-shadow: 0 0 12px rgba(232, 200, 130, 0.35);
+        }
+        .lj-bubbles-row {
+            display: flex;
+            gap: 10px;
+            pointer-events: auto;
+        }
+        .lj-bubble {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            width: 64px;
+        }
+        .lj-bubble-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 30%, rgba(60, 30, 45, 0.95), rgba(10, 6, 8, 0.95));
+            border: 1px solid var(--gold-dim);
+            box-shadow: 0 0 0 0 rgba(232, 200, 130, 0.4), 0 4px 16px rgba(0,0,0,0.5);
+            animation: lj-pulse 3.2s ease-in-out infinite;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+        .lj-bubble-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+        .lj-bubble:nth-child(2) .lj-bubble-icon {
+            animation-delay: 0.6s;
+        }
+        .lj-bubble:hover .lj-bubble-icon,
+        .lj-bubble:active .lj-bubble-icon {
+            transform: scale(1.08);
+            border-color: var(--gold-bright);
+        }
+        .lj-bubble-text {
+            font-family: var(--sans);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: var(--ink-dim);
+            text-align: center;
+            line-height: 1.3;
+        }
+        @keyframes lj-pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(232, 200, 130, 0.35), 0 4px 16px rgba(0,0,0,0.5);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(232, 200, 130, 0), 0 4px 16px rgba(0,0,0,0.5);
+            }
+        }
+        @media (max-width: 480px) {
+            .lj-bubbles {
+                right: 12px;
+                bottom: 12px;
+                gap: 6px;
+            }
+            .lj-bubbles-row {
+                gap: 8px;
+            }
+            .lj-bubble {
+                width: 56px;
+            }
+            .lj-bubble-icon {
+                width: 46px;
+                height: 46px;
+            }
+            .lj-bubble-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+            .lj-bubble-text {
+                font-size: 9px;
+            }
+            .lj-bubbles-label {
+                font-size: 9px;
+            }
+        }
+    </style>
+
     <!-- ===== FOOTER ===== -->
     <footer>
         <div class="footer-content">

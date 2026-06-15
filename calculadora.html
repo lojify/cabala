@@ -1078,8 +1078,8 @@
       </div>
     </div>
 
-    <!-- CTA Final → Desafio de 7 Dias (link Kiwify) -->
-    <div class="mystic-card fade-in fi2" style="margin-top:24px;width:100%;">
+    <!-- CTA Final → Desafio de 7 Dias -->
+    <div id="desafio" class="mystic-card fade-in fi2" style="margin-top:24px;width:100%;">
       <div class="corner-ornament tl"></div><div class="corner-ornament tr"></div>
       <div class="corner-ornament bl"></div><div class="corner-ornament br"></div>
       <div style="padding:32px 28px;">
@@ -1827,7 +1827,6 @@
 
   // ── IR PARA LEITURA ─────────────────────────────────────────────
   function goToReading() {
-    if (!contributionDone) return;
     showScreen('screen5');
 
     // Oculta todas as áreas
