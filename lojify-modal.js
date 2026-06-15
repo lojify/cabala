@@ -185,7 +185,7 @@
       }
     } catch (err) {
       let msg = err.message || 'Ocorreu um erro. Tente novamente.';
-      if (msg.includes('Invalid login credentials')) msg = 'E-mail ou senha incorretos.';
+      if (msg.includes('Invalid login credentials')) msg = 'E-mail ou senha incorretos. Se ainda não tem conta, clique em "Criar conta" abaixo.';
       if (msg.includes('User already registered')) msg = 'Este e-mail já tem conta. Tente entrar.';
       els.error.textContent = msg;
       els.error.style.display = 'block';
