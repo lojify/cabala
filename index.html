@@ -50,6 +50,11 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        header.lj-hide {
+            transform: translateY(-100%);
         }
 
         .header-content {
@@ -256,12 +261,22 @@
             width: 60px;
             height: 60px;
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
-            border-radius: 4px;
+            background: radial-gradient(circle at 30% 30%, rgba(60, 30, 45, 0.95), rgba(10, 6, 8, 0.95));
+            border: 1px solid var(--gold-dim);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            transition: border-color 0.3s ease;
+        }
+
+        .pillar-icon svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        .pillar-card:hover .pillar-icon {
+            border-color: var(--gold-bright);
         }
 
         .pillar-card h3 {
@@ -552,7 +567,6 @@
                 <span>O Livro Negro</span>
             </a>
             <div style="display:flex; align-items:center; gap:16px;">
-                <a href="/calculadora" class="cta-header" style="background:transparent; border:1px solid var(--gold-dim); color:var(--gold);">Calculadora Cabalística</a>
                 <button id="headerLoginBtn" class="cta-header" style="background:transparent; border:1px solid var(--gold-dim); color:var(--gold);">Entrar</button>
             </div>
         </div>
@@ -584,22 +598,82 @@
 
             <div class="pillars-grid">
                 <div class="pillar-card">
-                    <div class="pillar-icon">🔑</div>
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 6 L29 14 L24 22 L19 14 Z" stroke="url(#pillarGold1)" stroke-width="1.4" fill="none" opacity="0.9"/>
+                            <line x1="24" y1="22" x2="24" y2="40" stroke="url(#pillarGold1)" stroke-width="1.4"/>
+                            <circle cx="24" cy="34" r="4" stroke="url(#pillarGold1)" stroke-width="1.4" fill="none"/>
+                            <line x1="24" y1="28" x2="30" y2="28" stroke="url(#pillarGold1)" stroke-width="1.4"/>
+                            <defs>
+                                <linearGradient id="pillarGold1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#e8c882"/>
+                                    <stop offset="1" stop-color="#cda45e"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Caminhos & Sorte</h3>
                     <p>Desvende os segredos para abrir portas, atrair oportunidades e alinhar-se com o fluxo da boa sorte.</p>
                 </div>
                 <div class="pillar-card">
-                    <div class="pillar-icon">💰</div>
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 12 H34 L31 28 C31 33 27 36 24 36 C21 36 17 33 17 28 Z" stroke="url(#pillarGold2)" stroke-width="1.4" fill="none" opacity="0.9"/>
+                            <line x1="24" y1="36" x2="24" y2="40" stroke="url(#pillarGold2)" stroke-width="1.4"/>
+                            <line x1="18" y1="40" x2="30" y2="40" stroke="url(#pillarGold2)" stroke-width="1.4"/>
+                            <path d="M19 19 C22 22 26 22 29 19" stroke="url(#pillarGold2)" stroke-width="1.2" opacity="0.7"/>
+                            <defs>
+                                <linearGradient id="pillarGold2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#e8c882"/>
+                                    <stop offset="1" stop-color="#cda45e"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Abundância</h3>
                     <p>Remova bloqueios financeiros, atraia prosperidade material e crie um "vaso" interno para receber riqueza.</p>
                 </div>
                 <div class="pillar-card">
-                    <div class="pillar-icon">🛡️</div>
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 7 L37 12 V24 C37 32 31 38 24 41 C17 38 11 32 11 24 V12 Z" stroke="url(#pillarGold3)" stroke-width="1.4" fill="none" opacity="0.9"/>
+                            <path d="M24 14 L31 27 L17 27 Z" stroke="url(#pillarGold3)" stroke-width="1.2" fill="none" opacity="0.6"/>
+                            <path d="M24 31 L31 18 L17 18 Z" stroke="url(#pillarGold3)" stroke-width="1.2" fill="none" opacity="0.6"/>
+                            <defs>
+                                <linearGradient id="pillarGold3" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#e8c882"/>
+                                    <stop offset="1" stop-color="#cda45e"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Proteção</h3>
                     <p>Construa um escudo energético contra inveja e energias densas, cultivando uma paz interior inabalável.</p>
                 </div>
                 <div class="pillar-card">
-                    <div class="pillar-icon">✨</div>
+                    <div class="pillar-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="24" cy="24" r="3" fill="#e8c882"/>
+                            <circle cx="24" cy="10" r="1.8" fill="#e8c882" opacity="0.85"/>
+                            <circle cx="36" cy="17" r="1.8" fill="#e8c882" opacity="0.85"/>
+                            <circle cx="36" cy="31" r="1.8" fill="#e8c882" opacity="0.85"/>
+                            <circle cx="24" cy="38" r="1.8" fill="#e8c882" opacity="0.85"/>
+                            <circle cx="12" cy="31" r="1.8" fill="#e8c882" opacity="0.85"/>
+                            <circle cx="12" cy="17" r="1.8" fill="#e8c882" opacity="0.85"/>
+                            <line x1="24" y1="24" x2="24" y2="10" stroke="url(#pillarGold4)" stroke-width="1.1" opacity="0.7"/>
+                            <line x1="24" y1="24" x2="36" y2="17" stroke="url(#pillarGold4)" stroke-width="1.1" opacity="0.7"/>
+                            <line x1="24" y1="24" x2="36" y2="31" stroke="url(#pillarGold4)" stroke-width="1.1" opacity="0.7"/>
+                            <line x1="24" y1="24" x2="24" y2="38" stroke="url(#pillarGold4)" stroke-width="1.1" opacity="0.7"/>
+                            <line x1="24" y1="24" x2="12" y2="31" stroke="url(#pillarGold4)" stroke-width="1.1" opacity="0.7"/>
+                            <line x1="24" y1="24" x2="12" y2="17" stroke="url(#pillarGold4)" stroke-width="1.1" opacity="0.7"/>
+                            <defs>
+                                <linearGradient id="pillarGold4" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0" stop-color="#e8c882"/>
+                                    <stop offset="1" stop-color="#cda45e"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h3>Magnetismo</h3>
                     <p>Desperte seu poder de atração, melhore relacionamentos e conecte-se com pessoas que impulsionam seu crescimento.</p>
                 </div>
@@ -973,6 +1047,21 @@
         }
 
         if (headerLoginBtn) updateHeaderAuth();
+
+        // Header esconde ao rolar pra baixo, reaparece ao rolar pra cima
+        (function () {
+            const headerEl = document.querySelector('header');
+            let lastY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                const y = window.scrollY;
+                if (y > lastY && y > 80) {
+                    headerEl.classList.add('lj-hide');
+                } else {
+                    headerEl.classList.remove('lj-hide');
+                }
+                lastY = y;
+            }, { passive: true });
+        })();
 
         // Se voltou do Stripe com sucesso, redireciona para /livro (garantia extra)
         (function () {

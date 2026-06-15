@@ -573,6 +573,11 @@
   .lj-topbar {
     position: fixed; top: 12px; right: 12px; z-index: 9980;
     display: flex; gap: 8px; align-items: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .lj-topbar.lj-hide {
+    transform: translateY(-140%);
+    opacity: 0;
   }
   .lj-topbar a, .lj-topbar button {
     font-family: 'Cinzel', serif;
@@ -2313,6 +2318,21 @@
   });
 
   ljCheckAccessOnLoad();
+
+  // Topbar esconde ao rolar pra baixo, reaparece ao rolar pra cima
+  (function () {
+    const topbarEl = document.querySelector('.lj-topbar');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > lastY && y > 80) {
+        topbarEl.classList.add('lj-hide');
+      } else {
+        topbarEl.classList.remove('lj-hide');
+      }
+      lastY = y;
+    }, { passive: true });
+  })();
 </script>
 </body>
 </html>
