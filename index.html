@@ -554,7 +554,6 @@
             <div style="display:flex; align-items:center; gap:16px;">
                 <a href="/calculadora" class="cta-header" style="background:transparent; border:1px solid var(--gold-dim); color:var(--gold);">Calculadora Cabalística</a>
                 <button id="headerLoginBtn" class="cta-header" style="background:transparent; border:1px solid var(--gold-dim); color:var(--gold);">Entrar</button>
-                <button id="ctaHeaderBtn" class="cta-header">Comprar — R$ 22,22</button>
             </div>
         </div>
     </header>
@@ -785,20 +784,29 @@
             if (btn) btn.addEventListener('click', () => handleComprarClick(btn));
         });
 
-        // Botão "Entrar" no header — leva para /livro (já logado) ou abre login e então redireciona
-        const loginBtn = document.getElementById('headerLoginBtn');
-        if (loginBtn) {
-            loginBtn.addEventListener('click', async () => {
-                const user = await window.LojifyAuth.getCurrentUser();
-                if (user) {
-                    window.location.href = '/livro';
-                    return;
-                }
-                window.LojifyModal.open(() => {
-                    window.location.href = '/livro';
-                }, 'signin');
-            });
+        // Botão "Entrar" no header — loga e volta na mesma página
+        // Se já logado, muda para "Sair" + nome/email resumido
+        const headerLoginBtn = document.getElementById('headerLoginBtn');
+
+        async function updateHeaderAuth() {
+            const user = await window.LojifyAuth.getCurrentUser();
+            if (user) {
+                headerLoginBtn.textContent = 'Sair';
+                headerLoginBtn.onclick = async () => {
+                    await window.LojifyAuth.signOut();
+                    window.location.reload();
+                };
+            } else {
+                headerLoginBtn.textContent = 'Entrar';
+                headerLoginBtn.onclick = () => {
+                    window.LojifyModal.open(async () => {
+                        await updateHeaderAuth();
+                    }, 'signin');
+                };
+            }
         }
+
+        if (headerLoginBtn) updateHeaderAuth();
 
         // Se voltou do Stripe com sucesso, redireciona para /livro (garantia extra)
         (function () {
