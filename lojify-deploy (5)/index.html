@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Livro Negro da Cabala — 50 Chaves do Zohar | R$ 22,22</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cinzel:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-void: #0a0608;
+            --bg-deep: #150c12;
+            --bg-panel: #1c1117;
+            --gold: #cda45e;
+            --gold-bright: #e8c882;
+            --gold-dim: #8a6f3f;
+            --ink: #ece6dc;
+            --ink-dim: #a89c93;
+            --line: #3a2a30;
+            --serif: 'Cormorant Garamond', serif;
+            --display: 'Cinzel', serif;
+            --sans: 'Jost', sans-serif;
+        }
+
+        html, body {
+            background: var(--bg-void);
+            color: var(--ink);
+            font-family: var(--serif);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER / NAVIGATION ===== */
+        header {
+            background: linear-gradient(to bottom, rgba(21, 12, 18, 0.95), rgba(10, 6, 8, 0.8));
+            border-bottom: 1px solid var(--line);
+            padding: 24px 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--display);
+            font-size: 18px;
+            letter-spacing: 0.1em;
+            color: var(--gold-bright);
+            text-decoration: none;
+        }
+
+        .logo-symbol {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--bg-void);
+            font-size: 16px;
+        }
+
+        .cta-header {
+            font-family: var(--display);
+            font-size: 13px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: var(--gold);
+            color: var(--bg-void);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-header:hover {
+            background: var(--gold-bright);
+            box-shadow: 0 8px 24px rgba(205, 164, 94, 0.35);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, rgba(21, 12, 18, 0.8), rgba(28, 17, 23, 0.9)), 
+                        radial-gradient(circle at 50% 0%, rgba(205, 164, 94, 0.08), transparent 60%);
+            padding: 80px 32px;
+            text-align: center;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--display);
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-family: var(--display);
+            font-size: clamp(36px, 8vw, 64px);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--gold-bright);
+            text-shadow: 0 0 30px rgba(232, 200, 130, 0.15);
+            margin-bottom: 24px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--ink-dim);
+            max-width: 700px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            font-family: var(--display);
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--bg-void);
+            padding: 18px 48px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 12px 40px rgba(205, 164, 94, 0.25);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 50px rgba(205, 164, 94, 0.4);
+        }
+
+        .btn-secondary {
+            font-family: var(--display);
+            font-size: 14px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            background: transparent;
+            color: var(--gold);
+            padding: 18px 48px;
+            border: 2px solid var(--gold-dim);
+            border-radius: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            background: rgba(205, 164, 94, 0.1);
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: 80px 32px;
+            background: var(--bg-deep);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .features-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: var(--display);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 600;
+            color: var(--gold-bright);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--ink-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .pillar-card {
+            background: linear-gradient(135deg, rgba(205, 164, 94, 0.05), rgba(205, 164, 94, 0.02));
+            border: 1px solid var(--gold-dim);
+            padding: 40px 32px;
+            border-radius: 2px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pillar-card:hover {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(205, 164, 94, 0.1), rgba(205, 164, 94, 0.05));
+            box-shadow: 0 12px 40px rgba(205, 164, 94, 0.15);
+        }
+
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .pillar-card h3 {
+            font-family: var(--display);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--gold-bright);
+            margin-bottom: 12px;
+        }
+
+        .pillar-card p {
+            font-size: 15px;
+            color: var(--ink-dim);
+            line-height: 1.7;
+        }
+
+        /* ===== WHAT YOU GET SECTION ===== */
+        .what-you-get {
+            padding: 80px 32px;
+            background: var(--bg-panel);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .what-you-get-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 20px;
+        }
+
+        .benefit-check {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-void);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+
+        .benefit-text h4 {
+            font-family: var(--display);
+            font-size: 18px;
+            color: var(--gold-bright);
+            margin-bottom: 8px;
+        }
+
+        .benefit-text p {
+            font-size: 15px;
+            color: var(--ink-dim);
+            line-height: 1.6;
+        }
+
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            padding: 80px 32px;
+            background: var(--bg-deep);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .testimonials-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--line);
+            padding: 32px;
+            border-radius: 2px;
+        }
+
+        .testimonial-stars {
+            color: var(--gold);
+            font-size: 14px;
+            margin-bottom: 12px;
+            letter-spacing: 0.2em;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 15px;
+            color: var(--ink);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .testimonial-author {
+            font-family: var(--display);
+            font-size: 14px;
+            color: var(--gold-bright);
+            font-weight: 600;
+        }
+
+        .testimonial-role {
+            font-size: 12px;
+            color: var(--ink-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ===== OFFER SECTION ===== */
+        .offer {
+            padding: 80px 32px;
+            background: linear-gradient(135deg, rgba(205, 164, 94, 0.1), rgba(205, 164, 94, 0.05));
+            border-bottom: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .offer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--bg-void);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .offer h2 {
+            font-family: var(--display);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 600;
+            color: var(--gold-bright);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .offer-price {
+            font-family: var(--display);
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 32px 0;
+            text-shadow: 0 0 20px rgba(205, 164, 94, 0.2);
+        }
+
+        .offer-guarantee {
+            background: var(--bg-panel);
+            border: 1px solid var(--gold-dim);
+            padding: 32px;
+            border-radius: 2px;
+            margin: 32px 0;
+        }
+
+        .guarantee-title {
+            font-family: var(--display);
+            font-size: 18px;
+            color: var(--gold-bright);
+            margin-bottom: 12px;
+        }
+
+        .guarantee-text {
+            font-size: 15px;
+            color: var(--ink-dim);
+            line-height: 1.7;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .final-cta {
+            padding: 80px 32px;
+            background: var(--bg-void);
+            text-align: center;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .final-cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-family: var(--display);
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 600;
+            color: var(--gold-bright);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+
+        .final-cta p {
+            font-size: 18px;
+            color: var(--ink-dim);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bg-panel);
+            border-top: 1px solid var(--line);
+            padding: 40px 32px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--gold);
+            text-decoration: none;
+            margin: 0 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold-bright);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 60px 24px;
+            }
+
+            .hero h1 {
+                margin-bottom: 16px;
+            }
+
+            .features, .what-you-get, .testimonials, .offer, .final-cta {
+                padding: 60px 24px;
+            }
+
+            .pillars-grid {
+                gap: 24px;
+            }
+
+            .benefits-list {
+                gap: 24px;
+            }
+
+            .btn-primary, .btn-secondary {
+                padding: 16px 32px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-symbol">✦</div>
+                <span>O Livro Negro</span>
+            </a>
+            <div style="display:flex; align-items:center; gap:16px;">
+                <a href="/calculadora" class="cta-header" style="background:transparent; border:1px solid var(--gold-dim); color:var(--gold);">Calculadora Cabalística</a>
+                <button id="headerLoginBtn" class="cta-header" style="background:transparent; border:1px solid var(--gold-dim); color:var(--gold);">Entrar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-eyebrow">Sabedoria Ancestral para o Mundo Moderno</div>
+            <h1>O Livro Negro da Cabala<br>50 Chaves do Zohar</h1>
+            <p>Desvende os segredos milenares que transformam vidas. Uma experiência interativa que coloca em suas mãos o conhecimento ocultado por séculos, agora acessível e transformador — por apenas R$ 22,22.</p>
+            <div style="margin-top: 40px; position: relative;">
+                <img src="/assets/landing_page_cabala.png" alt="Preview do Livro Negro da Cabala" style="width: 100%; max-width: 800px; border-radius: 8px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); border: 1px solid var(--line);">
+            </div>
+            <div class="hero-cta">
+                <button id="ctaHeroBtn" class="btn-primary">Quero Minhas 50 Chaves — R$ 22,22</button>
+                <a href="#features" class="btn-secondary">Saiba Mais</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="features" id="features">
+        <div class="features-content">
+            <div class="section-header">
+                <h2>Os 4 Pilares de Sua Transformação</h2>
+                <p>Cada pilar contém 12 a 13 chaves que trabalham em harmonia para desvendar um aspecto essencial da sua vida.</p>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">🔑</div>
+                    <h3>Caminhos & Sorte</h3>
+                    <p>Desvende os segredos para abrir portas, atrair oportunidades e alinhar-se com o fluxo da boa sorte.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">💰</div>
+                    <h3>Abundância</h3>
+                    <p>Remova bloqueios financeiros, atraia prosperidade material e crie um "vaso" interno para receber riqueza.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">🛡️</div>
+                    <h3>Proteção</h3>
+                    <p>Construa um escudo energético contra inveja e energias densas, cultivando uma paz interior inabalável.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">✨</div>
+                    <h3>Magnetismo</h3>
+                    <p>Desperte seu poder de atração, melhore relacionamentos e conecte-se com pessoas que impulsionam seu crescimento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHAT YOU GET ===== -->
+    <section class="what-you-get">
+        <div class="what-you-get-content">
+            <div class="section-header">
+                <h2>O Que Você Vai Receber</h2>
+                <p>Uma experiência completa e interativa, cuidadosamente projetada para sua transformação.</p>
+            <div style="margin-top: 40px; display: flex; justify-content: center;">
+                <img src="/assets/mockup_app_cabala.png" alt="Aplicativo O Livro Negro da Cabala" style="width: 100%; max-width: 400px; border-radius: 30px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); border: 4px solid var(--bg-panel);">
+            </div>
+            </div>
+
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">
+                        <h4>50 Chaves Interativas</h4>
+                        <p>Acesso completo a todas as 50 chaves do Zohar, com navegação fluida e sigilos visuais dinâmicos.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">
+                        <h4>Citações Originais do Zohar</h4>
+                        <p>Conexão com a fonte milenar de sabedoria, traduzida para o português com precisão.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">
+                        <h4>Ações Diárias Práticas</h4>
+                        <p>Exercícios simples e poderosos para aplicar imediatamente e ver resultados tangíveis em sua vida.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">
+                        <h4>Decretos de Ativação</h4>
+                        <p>Afirmações poderosas para reprogramar sua mente e manifestar seus desejos com precisão.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">
+                        <h4>Web App Exclusivo</h4>
+                        <p>Funciona como um aplicativo no seu celular, tablet ou computador. Acesso offline e experiência premium.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">
+                        <h4>Acesso Vitalício</h4>
+                        <p>Uma única compra, acesso para sempre. Sem mensalidades, sem surpresas. O conhecimento é seu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials">
+        <div class="testimonials-content">
+            <div class="section-header">
+                <h2>Histórias de Transformação</h2>
+                <p>Veja como "O Livro Negro da Cabala" já transformou vidas.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Nunca imaginei que a Cabala pudesse ser tão prática e acessível. As ações diárias são um divisor de águas na minha vida. Recomendo para qualquer um que busca transformação real."</p>
+                    <div class="testimonial-author">Ana P.</div>
+                    <div class="testimonial-role">Empreendedora</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Senti uma mudança profunda na minha vida financeira depois de aplicar as chaves de Abundância. O design é lindo e a interatividade me mantém engajado todos os dias."</p>
+                    <div class="testimonial-author">Marcos R.</div>
+                    <div class="testimonial-role">Terapeuta</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"É muito mais que um livro. A experiência interativa, os sigilos visuais e os decretos criam uma conexão profunda com a sabedoria da Cabala. Absolutamente recomendado."</p>
+                    <div class="testimonial-author">Sofia G.</div>
+                    <div class="testimonial-role">Estudante de Esoterismo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OFFER ===== -->
+    <section class="offer">
+        <div class="offer-content">
+            <div class="offer-badge">Acesso Imediato</div>
+            <h2>Invista em Sua Transformação Hoje</h2>
+            <div class="offer-price">R$ 22,22</div>
+            <p style="font-size: 16px; color: var(--ink-dim); margin-bottom: 24px;">Pagamento único · Acesso vitalício a todas as 50 chaves</p>
+
+            <div class="offer-guarantee">
+                <div class="guarantee-title">✓ Garantia Incondicional de 7 Dias</div>
+                <div class="guarantee-text">Estamos tão confiantes no poder transformador de "O Livro Negro da Cabala" que oferecemos uma garantia de 7 dias. Se por qualquer motivo você não se sentir satisfeito, devolveremos 100% do seu investimento, sem perguntas.</div>
+            </div>
+
+            <button id="ctaOfferBtn" class="btn-primary">Sim, Quero Minhas 50 Chaves Agora</button>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="final-cta" id="cta">
+        <div class="final-cta-content">
+            <h2>Sua Jornada de Transformação Começa Aqui</h2>
+            <p>Não deixe para depois. O conhecimento que você busca está ao seu alcance. Clique abaixo para acessar "O Livro Negro da Cabala" e comece a desvendar os segredos que mudarão sua vida.</p>
+            <button id="ctaFinalBtn" class="btn-primary" style="font-size: 16px; padding: 20px 56px;">Comprar Agora — R$ 22,22</button>
+            <p style="font-size: 12px; color: var(--ink-dim); margin-top: 24px; letter-spacing: 0.1em; text-transform: uppercase;">Pagamento seguro via Stripe • Acesso imediato • Garantia de 7 dias</p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Termos de Uso</a>
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Contato</a>
+            </div>
+            <p>© 2026 O Livro Negro da Cabala. Todos os direitos reservados. | Desenvolvido com ✦ para sua transformação.</p>
+            <p style="margin-top: 16px; font-size: 12px;">Este produto é destinado a fins educacionais e de desenvolvimento pessoal. Os resultados podem variar de pessoa para pessoa.</p>
+        </div>
+    </footer>
+    <!-- ===== SCRIPTS: Auth + Checkout ===== -->
+    <script src="/lojify-auth.js"></script>
+    <script src="/lojify-modal.js"></script>
+    <script>
+        const PRODUCT_SLUG = 'livro-negro-cabala';
+
+        async function handleComprarClick(btn) {
+            const originalText = btn.textContent;
+            try {
+                const user = await window.LojifyAuth.getCurrentUser();
+
+                if (!user) {
+                    window.LojifyModal.open(async () => {
+                        await iniciarCheckout(btn, originalText);
+                    });
+                    return;
+                }
+
+                // Já logado: verifica se já comprou
+                const ja = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG);
+                if (ja) {
+                    window.location.href = '/livro';
+                    return;
+                }
+
+                await iniciarCheckout(btn, originalText);
+            } catch (err) {
+                console.error(err);
+                btn.textContent = originalText;
+                alert('Não foi possível iniciar o checkout. Tente novamente em instantes.');
+            }
+        }
+
+        async function iniciarCheckout(btn, originalText) {
+            btn.textContent = 'Abrindo pagamento...';
+            try {
+                await window.LojifyAuth.startCheckout(PRODUCT_SLUG);
+            } catch (err) {
+                console.error(err);
+                btn.textContent = originalText;
+                alert('Não foi possível iniciar o checkout. Tente novamente em instantes.');
+            }
+        }
+
+        ['ctaHeaderBtn', 'ctaHeroBtn', 'ctaOfferBtn', 'ctaFinalBtn'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.addEventListener('click', () => handleComprarClick(btn));
+        });
+
+        // Botão "Entrar" no header — loga e volta na mesma página
+        // Se já logado, muda para "Sair" + nome/email resumido
+        const headerLoginBtn = document.getElementById('headerLoginBtn');
+
+        async function updateHeaderAuth() {
+            const user = await window.LojifyAuth.getCurrentUser();
+            if (user) {
+                headerLoginBtn.textContent = 'Sair';
+                headerLoginBtn.onclick = async () => {
+                    await window.LojifyAuth.signOut();
+                    window.location.reload();
+                };
+            } else {
+                headerLoginBtn.textContent = 'Entrar';
+                headerLoginBtn.onclick = () => {
+                    window.LojifyModal.open(async () => {
+                        await updateHeaderAuth();
+                    }, 'signin');
+                };
+            }
+        }
+
+        if (headerLoginBtn) updateHeaderAuth();
+
+        // Se voltou do Stripe com sucesso, redireciona para /livro (garantia extra)
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('status') === 'desbloqueado') {
+                window.location.href = '/livro?status=desbloqueado' + (params.get('session_id') ? '&session_id=' + params.get('session_id') : '');
+            }
+        })();
+    </script>
+
+</body>
+</html>
