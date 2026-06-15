@@ -784,6 +784,19 @@
             if (btn) btn.addEventListener('click', () => handleComprarClick(btn));
         });
 
+        // Atualiza CTAs de compra para "Acessar o Livro" se já comprou
+        async function updateCtaBtns() {
+            const user = await window.LojifyAuth.getCurrentUser();
+            if (!user) return;
+            const ja = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG);
+            if (!ja) return;
+            ['ctaHeroBtn', 'ctaOfferBtn', 'ctaFinalBtn'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) btn.textContent = '✦ Acessar o Livro';
+            });
+        }
+        updateCtaBtns();
+
         // Botão "Entrar" no header — loga e volta na mesma página
         // Se já logado, muda para "Sair" + nome/email resumido
         const headerLoginBtn = document.getElementById('headerLoginBtn');

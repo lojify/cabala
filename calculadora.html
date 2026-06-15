@@ -1532,7 +1532,7 @@
 
   function goToContribution() {
     if (!selectedTheme) return;
-    showScreen('screen4');
+    goToReading();
   }
 
   // ── CONTRIBUIÇÃO ────────────────────────────────────────────────
@@ -2251,7 +2251,7 @@
   const PRODUCT_SLUG_DESAFIO = 'desafio-7-dias';
 
   function ljShowUnlockedArea() {
-    ['screen1','loading1','screen2','loading2','screen3','screen4','screen5'].forEach(id => {
+    ['screen1','loading1','screen2','loading2','screen3','screen5'].forEach(id => {
       const el = document.getElementById(id);
       if (el) el.style.display = 'none';
     });
