@@ -75,12 +75,30 @@ async function hasPurchased(productSlug) {
 }
 
 // ---------- Checkout Stripe ----------
+
+// Mapa de success_url e cancel_url por produto
+const CHECKOUT_ROUTES = {
+  'mapa-cabalistico-pessoal': {
+    success_url: 'https://lojify.store/mapa?status=desbloqueado',
+    cancel_url:  'https://lojify.store/',
+  },
+  'livro-negro-cabala': {
+    success_url: 'https://lojify.store/livro?status=desbloqueado',
+    cancel_url:  'https://lojify.store/livro',
+  },
+};
+
 async function startCheckout(productSlug) {
   const client = await getClient();
   const { data: { session } } = await client.auth.getSession();
   if (!session) {
     throw new Error('not_authenticated');
   }
+
+  const routes = CHECKOUT_ROUTES[productSlug] || {
+    success_url: 'https://lojify.store/',
+    cancel_url:  'https://lojify.store/',
+  };
 
   const resp = await fetch(`${SUPABASE_URL}/functions/v1/create-checkout-session`, {
     method: 'POST',
@@ -89,7 +107,11 @@ async function startCheckout(productSlug) {
       'Authorization': `Bearer ${session.access_token}`,
       'apikey': SUPABASE_ANON_KEY,
     },
-    body: JSON.stringify({ product_slug: productSlug }),
+    body: JSON.stringify({
+      product_slug: productSlug,
+      success_url:  routes.success_url,
+      cancel_url:   routes.cancel_url,
+    }),
   });
 
   const json = await resp.json();

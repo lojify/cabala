@@ -389,8 +389,19 @@
     .topbar{flex-direction:column; align-items:flex-start;}
   }
 </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+  new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+  "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,"script","dataLayer","GTM-WV32MJQP");</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WV32MJQP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
   <!-- ===== GATE: loading ===== -->
   <div class="lj-gate" id="ljGateLoading">
@@ -741,6 +752,48 @@ window.ljRenderBook = render;
 
     checkAccess();
 </script>
+
+<!-- ══ BOLHAS FLUTUANTES — Continue a Travessia ══ -->
+<div class="lj-bubbles-float" aria-label="Continue a travessia">
+  <p class="lj-bubbles-float-label">Continue a Travessia</p>
+  <div class="lj-bubbles-float-row">
+    <a href="/calculadora" class="lj-bbl" aria-label="Calculadora Cabalística Gratuita">
+      <span class="lj-bbl-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="21" stroke="url(#lvGold1)" stroke-width="1.4" opacity="0.55"/>
+          <path d="M24 9 L36 31 L12 31 Z" stroke="url(#lvGold1)" stroke-width="1.3" fill="none" opacity="0.85"/>
+          <path d="M24 39 L12 17 L36 17 Z" stroke="url(#lvGold1)" stroke-width="1.3" fill="none" opacity="0.55"/>
+          <circle cx="24" cy="24" r="2.4" fill="#cda45e"/>
+          <defs><linearGradient id="lvGold1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e8c882"/><stop offset="1" stop-color="#cda45e"/></linearGradient></defs>
+        </svg>
+      </span>
+      <span class="lj-bbl-text">Calcule de Graça</span>
+    </a>
+    <a href="/" class="lj-bbl" aria-label="Mapa Numerológico">
+      <span class="lj-bbl-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="21" stroke="url(#lvGold2)" stroke-width="1.4" opacity="0.55"/>
+          <polygon points="24,12 33,28 15,28" stroke="url(#lvGold2)" stroke-width="1.3" fill="none" opacity="0.85"/>
+          <polygon points="24,36 15,20 33,20" stroke="url(#lvGold2)" stroke-width="1.3" fill="none" opacity="0.55"/>
+          <circle cx="24" cy="24" r="2.4" fill="#e8c882"/>
+          <circle cx="24" cy="24" r="5" stroke="url(#lvGold2)" stroke-width="0.8" fill="none" opacity="0.5"/>
+          <defs><linearGradient id="lvGold2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#e8c882"/><stop offset="1" stop-color="#cda45e"/></linearGradient></defs>
+        </svg>
+      </span>
+      <span class="lj-bbl-text">Meu Mapa</span>
+    </a>
+  </div>
+</div>
+<style>
+  .lj-bubbles-float { position:fixed; right:16px; bottom:16px; z-index:9999; display:flex; flex-direction:column; align-items:flex-end; gap:8px; pointer-events:none; }
+  .lj-bubbles-float-label { font-family:'Cinzel',serif; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-bright,#e8c882); opacity:0.75; margin:0 4px 2px 0; text-align:right; text-shadow:0 0 12px rgba(232,200,130,0.3); }
+  .lj-bubbles-float-row { display:flex; gap:10px; pointer-events:all; }
+  .lj-bbl { display:flex; flex-direction:column; align-items:center; gap:5px; text-decoration:none; }
+  .lj-bbl-icon { width:52px; height:52px; background:rgba(10,6,8,0.92); border:1px solid rgba(232,200,130,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 18px rgba(232,200,130,0.15); transition:transform 0.2s,box-shadow 0.2s; }
+  .lj-bbl-icon svg { width:30px; height:30px; }
+  .lj-bbl:hover .lj-bbl-icon { transform:translateY(-3px); box-shadow:0 0 28px rgba(232,200,130,0.3); }
+  .lj-bbl-text { font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold-bright,#e8c882); opacity:0.8; text-align:center; max-width:60px; line-height:1.3; }
+</style>
 
 </body>
 </html>

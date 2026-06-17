@@ -707,12 +707,23 @@
     .content-wrap { padding: 32px 16px 60px; }
   }
 </style>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":
+  new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src=
+  "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,"script","dataLayer","GTM-WV32MJQP");</script>
+  <!-- End Google Tag Manager -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WV32MJQP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <div class="lj-topbar">
-  <a href="/">✦ O Livro Negro da Cabala</a>
-  <button id="ljDesafioLoginBtn" type="button">Já tenho acesso</button>
+  <a href="/">✦ Mapa Numerológico Cabalístico</a>
+  <button id="ljLoginBtn" type="button">Já tenho acesso</button>
 </div>
 
 <div class="stars-bg"></div>
@@ -1083,56 +1094,956 @@
       </div>
     </div>
 
-    <!-- CTA Final → Desafio de 7 Dias -->
-    <div id="desafio" class="mystic-card fade-in fi2" style="margin-top:24px;width:100%;">
-      <div class="corner-ornament tl"></div><div class="corner-ornament tr"></div>
-      <div class="corner-ornament bl"></div><div class="corner-ornament br"></div>
-      <div style="padding:32px 28px;">
-        <div class="reading-cta">
-          <span class="mystic-symbol" style="font-size:1.6rem;">☽ ✦ ☾</span>
-          <p class="eyebrow" style="margin-bottom:12px;">VOCÊ CHEGOU ATÉ AQUI COM INTENÇÃO</p>
-          <h3 class="glow-title" style="font-size:clamp(1.2rem,3vw,1.6rem);margin-bottom:12px;">
-            A Leitura Apontou o Diagnóstico.<br>O Protocolo Faz a Cura.
-          </h3>
-          <p style="color:rgba(232,224,245,.6);font-size:.95rem;line-height:1.85;font-style:italic;max-width:400px;margin:0 auto 24px;">
-            O Desafio de 7 Dias é o protocolo completo de destravamento vibracional — sete rituais baseados nas Sefirot da Árvore da Vida, cada um projetado para dissolver uma camada específica do bloqueio identificado no seu número.
-          </p>
+    <!-- ══ PORTAL DE DESTINO — CTA Imersivo ══ -->
+    <div id="trilha" class="fade-in fi2" style="margin-top:32px;width:100%;position:relative;">
 
-          <!-- Bullets -->
-          <div style="display:flex;flex-direction:column;gap:10px;margin:0 0 20px;text-align:left;">
-            <div style="display:flex;align-items:center;gap:14px;background:rgba(124,58,237,.08);border:1px solid rgba(201,168,76,.12);border-radius:2px;padding:12px 16px;">
-              <span style="color:var(--gold);font-size:1rem;flex-shrink:0;">✦</span>
-              <p style="color:rgba(232,224,245,.8);font-size:.88rem;line-height:1.5;margin:0;"><strong style="color:var(--gold);">7 rituais completos</strong> — um para cada dia, com passo a passo detalhado e Horário de Ouro personalizado</p>
+      <!-- ── ESTILOS INTERNOS DO CTA ── -->
+      <style>
+        /* ── Keyframes exclusivos do CTA ── */
+        @keyframes cta-nebula-drift {
+          0%   { transform: translate(0,0) scale(1); opacity:.18; }
+          33%  { transform: translate(12px,-8px) scale(1.08); opacity:.28; }
+          66%  { transform: translate(-8px,10px) scale(.96); opacity:.2; }
+          100% { transform: translate(0,0) scale(1); opacity:.18; }
+        }
+        @keyframes cta-star-twinkle {
+          0%,100% { opacity:.15; transform:scale(1); }
+          50%      { opacity:.9; transform:scale(1.4); }
+        }
+        @keyframes cta-rune-spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+        @keyframes cta-rune-spin-rev {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(-360deg); }
+        }
+        @keyframes cta-glow-breathe {
+          0%,100% { opacity:.5; }
+          50%      { opacity:1; }
+        }
+        @keyframes cta-btn-shimmer {
+          0%   { left:-120%; }
+          100% { left:120%; }
+        }
+        @keyframes cta-float-up {
+          0%,100% { transform:translateY(0); }
+          50%      { transform:translateY(-6px); }
+        }
+        @keyframes cta-price-appear {
+          from { opacity:0; transform:scale(.8) translateY(6px); }
+          to   { opacity:1; transform:scale(1) translateY(0); }
+        }
+        @keyframes cta-card-glow-livro {
+          0%,100% { box-shadow: 0 0 40px rgba(201,168,76,.1), 0 0 80px rgba(124,58,237,.05), inset 0 0 40px rgba(201,168,76,.02); }
+          50%      { box-shadow: 0 0 60px rgba(201,168,76,.22), 0 0 120px rgba(124,58,237,.12), inset 0 0 60px rgba(201,168,76,.05); }
+        }
+        @keyframes cta-card-glow-mapa {
+          0%,100% { box-shadow: 0 0 50px rgba(45,212,191,.08), 0 0 100px rgba(124,58,237,.06), inset 0 0 50px rgba(45,212,191,.02); }
+          50%      { box-shadow: 0 0 80px rgba(45,212,191,.2), 0 0 160px rgba(124,58,237,.15), inset 0 0 80px rgba(45,212,191,.06); }
+        }
+        @keyframes cta-portal-pulse {
+          0%,100% { transform:scale(1); opacity:.6; }
+          50%      { transform:scale(1.15); opacity:1; }
+        }
+        @keyframes cta-reveal-up {
+          from { opacity:0; transform:translateY(30px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+
+        /* ── Wrapper principal ── */
+        .cta-portal-wrapper {
+          position: relative;
+          overflow: hidden;
+          border-radius: 4px;
+          background: linear-gradient(170deg, rgba(8,4,24,0.99) 0%, rgba(18,6,44,0.99) 50%, rgba(8,4,24,0.99) 100%);
+          border: 1px solid rgba(201,168,76,0.18);
+        }
+        .cta-portal-wrapper::before {
+          content: '';
+          position: absolute; top:0; left:0; right:0; height:1px;
+          background: linear-gradient(90deg, transparent 0%, rgba(201,168,76,0.6) 30%, rgba(232,224,245,0.3) 50%, rgba(201,168,76,0.6) 70%, transparent 100%);
+          animation: cta-glow-breathe 3s ease-in-out infinite;
+        }
+        .cta-portal-wrapper::after {
+          content: '';
+          position: absolute; bottom:0; left:0; right:0; height:1px;
+          background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+        }
+
+        /* ── Nebulosas de fundo ── */
+        .cta-nebula {
+          position: absolute; border-radius: 50%;
+          pointer-events: none; filter: blur(60px);
+        }
+        .cta-nebula-1 {
+          width: 340px; height: 340px;
+          background: radial-gradient(circle, rgba(124,58,237,0.22) 0%, transparent 70%);
+          top: -80px; left: -80px;
+          animation: cta-nebula-drift 12s ease-in-out infinite;
+        }
+        .cta-nebula-2 {
+          width: 280px; height: 280px;
+          background: radial-gradient(circle, rgba(45,212,191,0.12) 0%, transparent 70%);
+          bottom: -60px; right: -60px;
+          animation: cta-nebula-drift 16s ease-in-out infinite reverse;
+        }
+        .cta-nebula-3 {
+          width: 200px; height: 200px;
+          background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, transparent 70%);
+          top: 40%; left: 50%; transform: translate(-50%,-50%);
+          animation: cta-nebula-drift 20s ease-in-out infinite 4s;
+        }
+
+        /* ── Estrelas decorativas ── */
+        .cta-star {
+          position: absolute; border-radius: 50%;
+          background: rgba(201,168,76,0.8);
+          pointer-events: none;
+          animation: cta-star-twinkle var(--dur,3s) ease-in-out infinite var(--delay,0s);
+        }
+
+        /* ── Cabeçalho do portal ── */
+        .cta-header {
+          position: relative; z-index: 2;
+          text-align: center;
+          padding: 52px 32px 40px;
+        }
+        .cta-eyebrow {
+          font-family: 'Cinzel', serif;
+          font-size: 0.58rem; letter-spacing: 0.38em;
+          color: rgba(201,168,76,0.5);
+          text-transform: uppercase;
+          margin-bottom: 20px;
+          display: block;
+        }
+        .cta-portal-glyph {
+          position: relative;
+          width: 90px; height: 90px;
+          margin: 0 auto 28px;
+        }
+        .cta-portal-ring {
+          position: absolute; inset: 0;
+          border-radius: 50%;
+          border: 1px solid rgba(201,168,76,0.25);
+        }
+        .cta-portal-ring-1 { animation: cta-rune-spin 18s linear infinite; }
+        .cta-portal-ring-2 {
+          inset: 8px;
+          border-color: rgba(201,168,76,0.15);
+          animation: cta-rune-spin-rev 12s linear infinite;
+        }
+        .cta-portal-ring-3 {
+          inset: 18px;
+          border-color: rgba(45,212,191,0.2);
+          animation: cta-rune-spin 8s linear infinite;
+        }
+        .cta-portal-center {
+          position: absolute; inset: 0;
+          display: flex; align-items: center; justify-content: center;
+        }
+        .cta-portal-dot {
+          width: 28px; height: 28px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(201,168,76,0.9) 0%, rgba(201,168,76,0.2) 60%, transparent 100%);
+          box-shadow: 0 0 20px rgba(201,168,76,0.6), 0 0 40px rgba(201,168,76,0.3);
+          animation: cta-portal-pulse 3s ease-in-out infinite;
+        }
+        .cta-main-title {
+          font-family: 'Cinzel', serif;
+          font-size: clamp(1.4rem, 4vw, 2rem);
+          line-height: 1.25;
+          color: var(--gold-light);
+          text-shadow: 0 0 40px rgba(201,168,76,0.4), 0 0 80px rgba(201,168,76,0.15);
+          margin-bottom: 16px;
+          animation: cta-reveal-up 0.8s ease both;
+        }
+        .cta-subtitle {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.05rem;
+          line-height: 1.85;
+          color: rgba(232,224,245,0.6);
+          font-style: italic;
+          max-width: 400px;
+          margin: 0 auto 32px;
+          animation: cta-reveal-up 0.8s 0.2s ease both;
+        }
+        .cta-divider-line {
+          display: flex; align-items: center; gap: 14px;
+          margin: 0 auto 40px;
+          max-width: 280px;
+        }
+        .cta-divider-line::before, .cta-divider-line::after {
+          content: ''; flex: 1; height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4));
+        }
+        .cta-divider-line::after {
+          background: linear-gradient(270deg, transparent, rgba(201,168,76,0.4));
+        }
+        .cta-divider-symbol {
+          font-size: 0.7rem;
+          color: rgba(201,168,76,0.6);
+        }
+
+        /* ── Cards dos produtos ── */
+        .cta-cards-wrap {
+          position: relative; z-index: 2;
+          padding: 0 24px 48px;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+
+        /* ── Card do Livro ── */
+        .cta-card-livro {
+          position: relative;
+          border-radius: 6px 6px 0 0;
+          overflow: hidden;
+          background: linear-gradient(145deg, rgba(26,10,62,0.95) 0%, rgba(11,7,30,0.98) 100%);
+          border: 1px solid rgba(201,168,76,0.25);
+          border-bottom: none;
+          padding: 36px 28px 32px;
+          animation: cta-card-glow-livro 4s ease-in-out infinite;
+          transition: transform 0.3s;
+        }
+        .cta-card-livro:hover { transform: translateY(-2px); }
+        .cta-card-livro::before {
+          content: '';
+          position: absolute; top:0; left:0; right:0; height:2px;
+          background: linear-gradient(90deg, transparent, rgba(201,168,76,0.8), rgba(232,224,245,0.4), rgba(201,168,76,0.8), transparent);
+        }
+        .cta-card-livro-bg {
+          position: absolute; inset:0; pointer-events:none; overflow:hidden;
+        }
+        .cta-card-livro-bg::before {
+          content: '';
+          position: absolute;
+          top: -40px; right: -40px;
+          width: 200px; height: 200px;
+          background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+          animation: cta-nebula-drift 10s ease-in-out infinite;
+        }
+        .cta-card-livro-bg::after {
+          content: '';
+          position: absolute;
+          bottom: -30px; left: -30px;
+          width: 160px; height: 160px;
+          background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+          animation: cta-nebula-drift 14s ease-in-out infinite reverse;
+        }
+
+        /* ── Ilustração do livro ── */
+        .cta-book-illustration {
+          display: flex;
+          align-items: center;
+          gap: 28px;
+          margin-bottom: 28px;
+        }
+        .cta-book-visual {
+          flex-shrink: 0;
+          position: relative;
+          width: 72px;
+        }
+        .cta-book-svg-wrap {
+          position: relative;
+          animation: cta-float-up 4s ease-in-out infinite;
+        }
+        .cta-book-glow {
+          position: absolute;
+          inset: -12px;
+          border-radius: 4px;
+          background: radial-gradient(circle, rgba(201,168,76,0.2) 0%, transparent 70%);
+          animation: cta-glow-breathe 3s ease-in-out infinite;
+        }
+        .cta-book-badge {
+          position: absolute;
+          top: -10px; right: -14px;
+          width: 32px; height: 32px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, rgba(201,168,76,0.9), rgba(232,200,100,0.7));
+          border: 1px solid rgba(255,255,255,0.2);
+          display: flex; align-items: center; justify-content: center;
+          box-shadow: 0 0 12px rgba(201,168,76,0.5);
+          font-family: 'Cinzel', serif;
+          font-size: 0.55rem;
+          color: rgba(11,7,30,0.9);
+          font-weight: 700;
+          letter-spacing: 0.05em;
+          line-height: 1.1;
+          text-align: center;
+        }
+        .cta-book-info { flex: 1; }
+        .cta-product-label {
+          font-family: 'Cinzel', serif;
+          font-size: 0.55rem; letter-spacing: 0.3em;
+          color: rgba(201,168,76,0.5);
+          text-transform: uppercase;
+          margin-bottom: 6px;
+          display: block;
+        }
+        .cta-product-title {
+          font-family: 'Cinzel', serif;
+          font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+          color: var(--gold-light);
+          line-height: 1.3;
+          margin-bottom: 10px;
+          text-shadow: 0 0 20px rgba(201,168,76,0.3);
+        }
+        .cta-product-subtitle {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.95rem;
+          color: rgba(232,224,245,0.55);
+          font-style: italic;
+          line-height: 1.7;
+        }
+
+        /* ── Revelações do livro ── */
+        .cta-revelacoes {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin-bottom: 28px;
+        }
+        .cta-rev-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          padding: 12px 16px;
+          background: rgba(11,7,30,0.5);
+          border: 1px solid rgba(201,168,76,0.1);
+          border-radius: 3px;
+          transition: border-color 0.3s, background 0.3s;
+        }
+        .cta-rev-item:hover {
+          border-color: rgba(201,168,76,0.25);
+          background: rgba(26,10,62,0.4);
+        }
+        .cta-rev-icon {
+          flex-shrink: 0;
+          width: 28px; height: 28px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(45,16,96,0.9), rgba(11,7,30,0.95));
+          border: 1px solid rgba(201,168,76,0.3);
+          display: flex; align-items: center; justify-content: center;
+          font-size: 0.75rem;
+          margin-top: 1px;
+        }
+        .cta-rev-text { flex: 1; }
+        .cta-rev-title {
+          font-family: 'Cinzel', serif;
+          font-size: 0.72rem;
+          color: rgba(232,224,245,0.85);
+          letter-spacing: 0.05em;
+          margin-bottom: 2px;
+        }
+        .cta-rev-desc {
+          font-size: 0.8rem;
+          color: rgba(232,224,245,0.45);
+          font-style: italic;
+          line-height: 1.5;
+        }
+
+        /* ── Preço e botão ── */
+        .cta-price-row {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          margin-bottom: 18px;
+        }
+        .cta-price-block { flex-shrink: 0; }
+        .cta-price-old {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.8rem;
+          color: rgba(232,224,245,0.2);
+          text-decoration: line-through;
+          margin-bottom: 2px;
+        }
+        .cta-price-new {
+          font-family: 'Cinzel', serif;
+          font-size: 1.8rem;
+          color: var(--gold);
+          line-height: 1;
+          text-shadow: 0 0 20px rgba(201,168,76,0.4);
+          animation: cta-price-appear 0.6s 0.4s ease both;
+        }
+        .cta-price-installment {
+          font-size: 0.72rem;
+          color: rgba(232,224,245,0.3);
+          font-style: italic;
+          margin-top: 3px;
+        }
+        .cta-btn-livro {
+          flex: 1;
+          font-family: 'Cinzel', serif;
+          font-size: 0.78rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          background: linear-gradient(135deg, rgba(45,16,96,0.9), rgba(26,10,62,0.95));
+          border: 1px solid rgba(201,168,76,0.6);
+          color: var(--gold-light);
+          padding: 18px 20px;
+          cursor: pointer;
+          border-radius: 3px;
+          position: relative;
+          overflow: hidden;
+          transition: border-color 0.3s, box-shadow 0.3s;
+          text-align: center;
+          display: block;
+          text-decoration: none;
+          animation: cta-card-glow-livro 3s ease-in-out infinite;
+        }
+        .cta-btn-livro::before {
+          content: '';
+          position: absolute; top:0; left:-120%; width:80%; height:100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+          animation: cta-btn-shimmer 2.5s ease-in-out infinite;
+        }
+        .cta-btn-livro:hover {
+          border-color: var(--gold);
+          box-shadow: 0 0 30px rgba(201,168,76,0.3), 0 0 60px rgba(124,58,237,0.15);
+        }
+        .cta-btn-livro-text { position: relative; z-index: 1; }
+
+        /* ── Conector entre cards ── */
+        .cta-connector {
+          position: relative;
+          height: 56px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(180deg, rgba(26,10,62,0.95) 0%, rgba(8,3,20,0.98) 50%, rgba(13,5,35,0.98) 100%);
+          border-left: 1px solid rgba(201,168,76,0.15);
+          border-right: 1px solid rgba(201,168,76,0.15);
+          overflow: hidden;
+        }
+        .cta-connector::before {
+          content: '';
+          position: absolute;
+          left: 0; right: 0;
+          top: 50%;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), transparent);
+        }
+        .cta-connector-badge {
+          position: relative; z-index: 1;
+          background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(45,212,191,0.08));
+          border: 1px solid rgba(201,168,76,0.3);
+          border-radius: 20px;
+          padding: 6px 18px;
+          font-family: 'Cinzel', serif;
+          font-size: 0.58rem;
+          letter-spacing: 0.2em;
+          color: rgba(201,168,76,0.7);
+          text-transform: uppercase;
+        }
+
+        /* ── Card do Mapa ── */
+        .cta-card-mapa {
+          position: relative;
+          border-radius: 0 0 6px 6px;
+          overflow: hidden;
+          background: linear-gradient(145deg, rgba(8,20,40,0.98) 0%, rgba(5,18,38,0.99) 50%, rgba(8,4,24,0.98) 100%);
+          border: 1px solid rgba(45,212,191,0.25);
+          border-top: none;
+          padding: 36px 28px 36px;
+          animation: cta-card-glow-mapa 4s ease-in-out infinite 1s;
+          transition: transform 0.3s;
+        }
+        .cta-card-mapa:hover { transform: translateY(2px); }
+        .cta-card-mapa::before {
+          content: '';
+          position: absolute; bottom:0; left:0; right:0; height:2px;
+          background: linear-gradient(90deg, transparent, rgba(45,212,191,0.5), rgba(201,168,76,0.6), rgba(45,212,191,0.5), transparent);
+        }
+        .cta-card-mapa-bg {
+          position: absolute; inset:0; pointer-events:none; overflow:hidden;
+        }
+        .cta-card-mapa-bg::before {
+          content: '';
+          position: absolute;
+          top: -50px; right: -50px;
+          width: 250px; height: 250px;
+          background: radial-gradient(circle, rgba(45,212,191,0.1) 0%, transparent 70%);
+          animation: cta-nebula-drift 11s ease-in-out infinite 2s;
+        }
+        .cta-card-mapa-bg::after {
+          content: '';
+          position: absolute;
+          bottom: -40px; left: -40px;
+          width: 200px; height: 200px;
+          background: radial-gradient(circle, rgba(124,58,237,0.12) 0%, transparent 70%);
+          animation: cta-nebula-drift 15s ease-in-out infinite reverse 3s;
+        }
+
+        /* ── Ilustração do mapa ── */
+        .cta-mapa-illustration {
+          display: flex;
+          align-items: center;
+          gap: 28px;
+          margin-bottom: 28px;
+        }
+        .cta-mapa-visual {
+          flex-shrink: 0;
+          position: relative;
+          width: 72px;
+        }
+        .cta-mapa-svg-wrap {
+          position: relative;
+          animation: cta-float-up 5s ease-in-out infinite 1s;
+        }
+        .cta-mapa-glow {
+          position: absolute;
+          inset: -16px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(45,212,191,0.2) 0%, transparent 70%);
+          animation: cta-glow-breathe 3.5s ease-in-out infinite 0.5s;
+        }
+        .cta-mapa-badge {
+          position: absolute;
+          top: -10px; right: -14px;
+          background: linear-gradient(135deg, rgba(45,212,191,0.9), rgba(20,180,160,0.8));
+          border: 1px solid rgba(255,255,255,0.2);
+          border-radius: 10px;
+          padding: 3px 8px;
+          font-family: 'Cinzel', serif;
+          font-size: 0.5rem;
+          color: rgba(8,4,24,0.95);
+          font-weight: 700;
+          letter-spacing: 0.08em;
+          white-space: nowrap;
+          box-shadow: 0 0 12px rgba(45,212,191,0.4);
+        }
+
+        /* ── Revelações do mapa ── */
+        .cta-mapa-revelacoes {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+          margin-bottom: 28px;
+        }
+        .cta-mapa-rev-item {
+          padding: 12px 14px;
+          background: rgba(8,20,40,0.6);
+          border: 1px solid rgba(45,212,191,0.12);
+          border-radius: 3px;
+          transition: border-color 0.3s;
+        }
+        .cta-mapa-rev-item:hover { border-color: rgba(45,212,191,0.3); }
+        .cta-mapa-rev-icon {
+          font-size: 1rem;
+          margin-bottom: 6px;
+          display: block;
+        }
+        .cta-mapa-rev-title {
+          font-family: 'Cinzel', serif;
+          font-size: 0.65rem;
+          color: rgba(232,224,245,0.8);
+          letter-spacing: 0.04em;
+          margin-bottom: 3px;
+          line-height: 1.3;
+        }
+        .cta-mapa-rev-desc {
+          font-size: 0.72rem;
+          color: rgba(232,224,245,0.35);
+          font-style: italic;
+          line-height: 1.4;
+        }
+
+        /* ── Botão do mapa ── */
+        .cta-btn-mapa {
+          display: block;
+          width: 100%;
+          font-family: 'Cinzel', serif;
+          font-size: 0.82rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          background: linear-gradient(135deg, rgba(20,60,80,0.95), rgba(8,30,50,0.98), rgba(20,8,50,0.95));
+          border: 1px solid rgba(45,212,191,0.5);
+          color: rgba(200,245,240,0.95);
+          padding: 22px 28px;
+          cursor: pointer;
+          border-radius: 3px;
+          position: relative;
+          overflow: hidden;
+          transition: border-color 0.3s, box-shadow 0.3s;
+          text-align: center;
+          text-decoration: none;
+          animation: cta-card-glow-mapa 3s ease-in-out infinite;
+          margin-bottom: 8px;
+        }
+        .cta-btn-mapa::before {
+          content: '';
+          position: absolute; top:0; left:-120%; width:80%; height:100%;
+          background: linear-gradient(90deg, transparent, rgba(45,212,191,0.08), transparent);
+          animation: cta-btn-shimmer 2.8s ease-in-out infinite 0.5s;
+        }
+        .cta-btn-mapa:hover {
+          border-color: rgba(45,212,191,0.8);
+          box-shadow: 0 0 40px rgba(45,212,191,0.25), 0 0 80px rgba(124,58,237,0.15);
+        }
+        .cta-btn-mapa-text { position: relative; z-index: 1; }
+        .cta-btn-mapa-sub {
+          display: block;
+          font-size: 0.62rem;
+          letter-spacing: 0.1em;
+          color: rgba(45,212,191,0.5);
+          margin-top: 4px;
+          font-style: italic;
+          font-family: 'Cormorant Garamond', serif;
+          text-transform: none;
+        }
+
+        /* ── Preço do mapa ── */
+        .cta-mapa-price-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          padding: 16px 20px;
+          background: rgba(8,20,40,0.5);
+          border: 1px solid rgba(45,212,191,0.1);
+          border-radius: 3px;
+        }
+        .cta-mapa-price-label {
+          font-family: 'Cinzel', serif;
+          font-size: 0.55rem;
+          letter-spacing: 0.2em;
+          color: rgba(45,212,191,0.5);
+          text-transform: uppercase;
+          margin-bottom: 4px;
+        }
+        .cta-mapa-price-old {
+          font-size: 0.78rem;
+          color: rgba(232,224,245,0.2);
+          text-decoration: line-through;
+          margin-bottom: 2px;
+        }
+        .cta-mapa-price-new {
+          font-family: 'Cinzel', serif;
+          font-size: 2rem;
+          color: rgba(200,245,240,0.95);
+          line-height: 1;
+          text-shadow: 0 0 20px rgba(45,212,191,0.4);
+        }
+        .cta-mapa-economy {
+          background: rgba(45,212,191,0.1);
+          border: 1px solid rgba(45,212,191,0.2);
+          border-radius: 3px;
+          padding: 6px 12px;
+          font-family: 'Cinzel', serif;
+          font-size: 0.6rem;
+          color: rgba(45,212,191,0.8);
+          letter-spacing: 0.08em;
+          margin-bottom: 6px;
+          text-align: center;
+        }
+        .cta-mapa-economy-sub {
+          font-size: 0.68rem;
+          color: rgba(232,224,245,0.3);
+          font-style: italic;
+          text-align: center;
+        }
+
+        /* ── Rodapé do portal ── */
+        .cta-footer {
+          position: relative; z-index: 2;
+          padding: 24px 32px 36px;
+          text-align: center;
+          border-top: 1px solid rgba(201,168,76,0.08);
+        }
+        .cta-trust-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          flex-wrap: wrap;
+          margin-bottom: 16px;
+        }
+        .cta-trust-item {
+          display: flex;
+          align-items: center;
+          gap: 7px;
+          font-family: 'Cinzel', serif;
+          font-size: 0.58rem;
+          letter-spacing: 0.12em;
+          color: rgba(232,224,245,0.3);
+          text-transform: uppercase;
+        }
+        .cta-trust-dot {
+          width: 5px; height: 5px;
+          border-radius: 50%;
+          background: rgba(201,168,76,0.4);
+        }
+        .cta-footer-quote {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 0.85rem;
+          color: rgba(232,224,245,0.2);
+          font-style: italic;
+          line-height: 1.6;
+        }
+
+        @media (max-width: 480px) {
+          .cta-header { padding: 40px 20px 32px; }
+          .cta-cards-wrap { padding: 0 16px 40px; }
+          .cta-card-livro, .cta-card-mapa { padding: 28px 20px; }
+          .cta-mapa-revelacoes { grid-template-columns: 1fr; }
+          .cta-price-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+          .cta-btn-livro { width: 100%; }
+          .cta-book-illustration, .cta-mapa-illustration { flex-direction: column; align-items: flex-start; gap: 16px; }
+          .cta-footer { padding: 20px 20px 28px; }
+          .cta-trust-row { gap: 14px; }
+        }
+      </style>
+
+      <!-- ── WRAPPER PRINCIPAL ── -->
+      <div class="cta-portal-wrapper">
+
+        <!-- Nebulosas de fundo -->
+        <div class="cta-nebula cta-nebula-1"></div>
+        <div class="cta-nebula cta-nebula-2"></div>
+        <div class="cta-nebula cta-nebula-3"></div>
+
+        <!-- Estrelas decorativas -->
+        <div class="cta-star" style="width:2px;height:2px;top:8%;left:12%;--dur:2.8s;--delay:0s;"></div>
+        <div class="cta-star" style="width:1.5px;height:1.5px;top:15%;left:78%;--dur:3.5s;--delay:0.7s;"></div>
+        <div class="cta-star" style="width:2px;height:2px;top:22%;left:45%;--dur:2.2s;--delay:1.2s;"></div>
+        <div class="cta-star" style="width:1px;height:1px;top:60%;left:8%;--dur:4s;--delay:0.3s;"></div>
+        <div class="cta-star" style="width:2px;height:2px;top:72%;left:88%;--dur:3.1s;--delay:1.8s;"></div>
+        <div class="cta-star" style="width:1.5px;height:1.5px;top:85%;left:32%;--dur:2.6s;--delay:0.9s;"></div>
+        <div class="cta-star" style="width:1px;height:1px;top:40%;left:92%;--dur:3.8s;--delay:2.1s;"></div>
+        <div class="cta-star" style="width:2px;height:2px;top:5%;left:55%;--dur:2.4s;--delay:1.5s;"></div>
+
+        <!-- ── CABEÇALHO ── -->
+        <div class="cta-header">
+          <span class="cta-eyebrow">✦ &nbsp; O que foi revelado é apenas o começo &nbsp; ✦</span>
+
+          <!-- Glifo animado -->
+          <div class="cta-portal-glyph">
+            <div class="cta-portal-ring cta-portal-ring-1">
+              <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="45" cy="45" r="44" stroke="rgba(201,168,76,0.2)" stroke-width="0.8"/>
+                <circle cx="45" cy="1" r="2" fill="rgba(201,168,76,0.6)"/>
+                <circle cx="45" cy="89" r="2" fill="rgba(201,168,76,0.6)"/>
+                <circle cx="1" cy="45" r="2" fill="rgba(201,168,76,0.6)"/>
+                <circle cx="89" cy="45" r="2" fill="rgba(201,168,76,0.6)"/>
+              </svg>
             </div>
-            <div style="display:flex;align-items:center;gap:14px;background:rgba(124,58,237,.08);border:1px solid rgba(201,168,76,.12);border-radius:2px;padding:12px 16px;">
-              <span style="color:var(--gold);font-size:1rem;flex-shrink:0;">✦</span>
-              <p style="color:rgba(232,224,245,.8);font-size:.88rem;line-height:1.5;margin:0;"><strong style="color:var(--gold);">Dissolução do bloqueio vibracional</strong> — identificado no cruzamento do seu nome com seu Portal de Destino</p>
+            <div class="cta-portal-ring cta-portal-ring-2">
+              <svg width="74" height="74" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:8px;">
+                <polygon points="37,4 70,56 4,56" stroke="rgba(201,168,76,0.2)" stroke-width="0.8" fill="none"/>
+                <polygon points="37,70 4,18 70,18" stroke="rgba(201,168,76,0.15)" stroke-width="0.8" fill="none"/>
+              </svg>
             </div>
-            <div style="display:flex;align-items:center;gap:14px;background:rgba(124,58,237,.08);border:1px solid rgba(201,168,76,.12);border-radius:2px;padding:12px 16px;">
-              <span style="color:var(--gold);font-size:1rem;flex-shrink:0;">✦</span>
-              <p style="color:rgba(232,224,245,.8);font-size:.88rem;line-height:1.5;margin:0;"><strong style="color:var(--gold);">Acesso vitalício e imediato</strong> — disponível no seu celular assim que o pagamento for confirmado</p>
+            <div class="cta-portal-ring cta-portal-ring-3">
+              <svg width="54" height="54" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:18px;">
+                <circle cx="27" cy="27" r="26" stroke="rgba(45,212,191,0.2)" stroke-width="0.8" stroke-dasharray="4 4"/>
+              </svg>
+            </div>
+            <div class="cta-portal-center">
+              <div class="cta-portal-dot"></div>
             </div>
           </div>
 
-          <div class="rule" style="max-width:280px;margin:0 auto 20px;"></div>
-          <p style="color:rgba(232,224,245,.3);font-size:.82rem;text-decoration:line-through;margin-bottom:4px;">De R$297,00</p>
-          <p class="title-glow" style="font-size:2.8rem;margin-bottom:4px;line-height:1;">R$ 49,90</p>
-          <p style="color:rgba(232,224,245,.45);font-size:.78rem;font-style:italic;margin-bottom:24px;">ou em até 10x de R$ 4,99</p>
-
-          <button id="ctaDesafioBtn" type="button" class="btn-checkout">
-            ✦ &nbsp;Quero Desbloquear Meus Caminhos Agora&nbsp; ✦
-          </button>
-
-          <div class="guarantee-box" style="margin-top:20px;">
-            <p style="color:rgba(232,224,245,.65);font-size:.85rem;text-align:center;line-height:1.7;">
-              🛡 <strong style="color:var(--gold);">Garantia incondicional de 7 dias.</strong> Se você seguir o protocolo e não sentir nenhuma mudança vibracional, devolvemos 100% do seu investimento — sem perguntas, sem burocracia.
-            </p>
-          </div>
-          <p style="color:rgba(232,224,245,.25);font-size:.72rem;text-align:center;margin-top:14px;font-style:italic;">
-            🔒 Pagamento 100% seguro · Acesso instantâneo após confirmação
+          <h2 class="cta-main-title">
+            Você acaba de tocar<br>a borda do seu destino.
+          </h2>
+          <p class="cta-subtitle">
+            O número que carrega seu nome é a porta. O que está do outro lado — seus bloqueios, seus portais, o plano escrito para a sua alma — aguarda ser lido.
           </p>
+          <div class="cta-divider-line">
+            <span class="cta-divider-symbol">◆</span>
+          </div>
         </div>
-      </div>
+
+        <!-- ── CARDS ── -->
+        <div class="cta-cards-wrap">
+
+          <!-- ═══ CARD 1: O LIVRO ═══ -->
+          <div class="cta-card-livro">
+            <div class="cta-card-livro-bg"></div>
+
+            <!-- Ilustração + info -->
+            <div class="cta-book-illustration">
+              <div class="cta-book-visual">
+                <div class="cta-book-svg-wrap">
+                  <div class="cta-book-glow"></div>
+                  <!-- Livro SVG ilustrado -->
+                  <svg width="72" height="88" viewBox="0 0 72 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <linearGradient id="bookGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="rgba(26,10,62,0.97)"/>
+                        <stop offset="100%" stop-color="rgba(11,7,30,0.99)"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="8" y="4" width="52" height="80" rx="3" fill="url(#bookGrad)" stroke="rgba(201,168,76,0.5)" stroke-width="1"/>
+                    <rect x="8" y="4" width="8" height="80" rx="2" fill="rgba(26,10,62,0.9)" stroke="rgba(201,168,76,0.3)" stroke-width="0.8"/>
+                    <line x1="22" y1="22" x2="52" y2="22" stroke="rgba(201,168,76,0.4)" stroke-width="0.8"/>
+                    <line x1="22" y1="28" x2="52" y2="28" stroke="rgba(201,168,76,0.25)" stroke-width="0.8"/>
+                    <line x1="22" y1="34" x2="44" y2="34" stroke="rgba(201,168,76,0.2)" stroke-width="0.8"/>
+                    <polygon points="36,44 42,54 30,54" stroke="rgba(201,168,76,0.7)" stroke-width="0.9" fill="none"/>
+                    <polygon points="36,62 42,52 30,52" stroke="rgba(201,168,76,0.5)" stroke-width="0.9" fill="none"/>
+                    <circle cx="36" cy="53" r="2" fill="rgba(201,168,76,0.8)"/>
+                    <line x1="22" y1="70" x2="52" y2="70" stroke="rgba(201,168,76,0.2)" stroke-width="0.8"/>
+                    <line x1="22" y1="76" x2="40" y2="76" stroke="rgba(201,168,76,0.15)" stroke-width="0.8"/>
+                  </svg>
+                  <div class="cta-book-badge">50<br>CHAVES</div>
+                </div>
+              </div>
+              <div class="cta-book-info">
+                <span class="cta-product-label">Volume I · Despertar e Fundação</span>
+                <h3 class="cta-product-title">Desvende os Códigos<br>Secretos do Universo</h3>
+                <p class="cta-product-subtitle">50 Chaves do Zohar que traduzem a linguagem que o universo usa para se comunicar com você — desde sempre.</p>
+              </div>
+            </div>
+
+            <!-- Revelações -->
+            <div class="cta-revelacoes">
+              <div class="cta-rev-item">
+                <div class="cta-rev-icon">📜</div>
+                <div class="cta-rev-text">
+                  <p class="cta-rev-title">A Linguagem Oculta dos Números</p>
+                  <p class="cta-rev-desc">Por que cada número que aparece na sua vida não é coincidência</p>
+                </div>
+              </div>
+              <div class="cta-rev-item">
+                <div class="cta-rev-icon">🌿</div>
+                <div class="cta-rev-text">
+                  <p class="cta-rev-title">A Árvore da Vida e Você</p>
+                  <p class="cta-rev-desc">Como as 10 Sefirot mapeiam exatamente os ciclos da sua existência</p>
+                </div>
+              </div>
+              <div class="cta-rev-item">
+                <div class="cta-rev-icon">🔑</div>
+                <div class="cta-rev-text">
+                  <p class="cta-rev-title">As 50 Chaves do Zohar</p>
+                  <p class="cta-rev-desc">Ferramentas práticas para destravar o que está bloqueado na sua vida agora</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Preço e botão -->
+            <div class="cta-price-row">
+              <div class="cta-price-block">
+                <p class="cta-price-old">R$ 44,44</p>
+                <p class="cta-price-new">R$ 22,22</p>
+                <p class="cta-price-installment">acesso imediato · e-book</p>
+              </div>
+              <button id="ctaLivroBtn" type="button" class="cta-btn-livro">
+                <span class="cta-btn-livro-text">✦ Quero as 50 Chaves ✦</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- ═══ CONECTOR ═══ -->
+          <div class="cta-connector">
+            <span class="cta-connector-badge">✦ &nbsp; ou eleve sua jornada ao máximo &nbsp; ✦</span>
+          </div>
+
+          <!-- ═══ CARD 2: O MAPA ═══ -->
+          <div class="cta-card-mapa">
+            <div class="cta-card-mapa-bg"></div>
+
+            <!-- Ilustração + info -->
+            <div class="cta-mapa-illustration">
+              <div class="cta-mapa-visual">
+                <div class="cta-mapa-svg-wrap">
+                  <div class="cta-mapa-glow"></div>
+                  <!-- Mapa SVG ilustrado -->
+                  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="36" cy="36" r="34" stroke="rgba(45,212,191,0.35)" stroke-width="0.8"/>
+                    <circle cx="36" cy="36" r="26" stroke="rgba(201,168,76,0.3)" stroke-width="0.8" stroke-dasharray="3 3"/>
+                    <circle cx="36" cy="36" r="16" stroke="rgba(45,212,191,0.4)" stroke-width="0.8"/>
+                    <line x1="36" y1="2" x2="36" y2="70" stroke="rgba(201,168,76,0.12)" stroke-width="0.7"/>
+                    <line x1="2" y1="36" x2="70" y2="36" stroke="rgba(201,168,76,0.12)" stroke-width="0.7"/>
+                    <line x1="10" y1="10" x2="62" y2="62" stroke="rgba(45,212,191,0.1)" stroke-width="0.7"/>
+                    <line x1="62" y1="10" x2="10" y2="62" stroke="rgba(45,212,191,0.1)" stroke-width="0.7"/>
+                    <polygon points="36,20 40,30 52,30 43,37 46,48 36,41 26,48 29,37 20,30 32,30" stroke="rgba(201,168,76,0.7)" stroke-width="0.9" fill="none"/>
+                    <circle cx="36" cy="36" r="3" fill="rgba(45,212,191,0.9)" opacity="0.9"/>
+                    <circle cx="36" cy="36" r="5" stroke="rgba(45,212,191,0.4)" stroke-width="0.8" fill="none"/>
+                    <circle cx="36" cy="4" r="1.5" fill="rgba(201,168,76,0.6)"/>
+                    <circle cx="36" cy="68" r="1.5" fill="rgba(201,168,76,0.6)"/>
+                    <circle cx="4" cy="36" r="1.5" fill="rgba(201,168,76,0.6)"/>
+                    <circle cx="68" cy="36" r="1.5" fill="rgba(201,168,76,0.6)"/>
+                  </svg>
+                  <div class="cta-mapa-badge">EXCLUSIVO</div>
+                </div>
+              </div>
+              <div class="cta-book-info">
+                <span class="cta-product-label" style="color:rgba(45,212,191,0.55);">Mapa Numerológico · Transformação Total</span>
+                <h3 class="cta-product-title" style="color:rgba(200,245,240,0.95);text-shadow:0 0 20px rgba(45,212,191,0.3);">Seu Mapa Cabalístico:<br>A Chave da Sua Alma</h3>
+                <p class="cta-product-subtitle">Um mapa gerado exclusivamente para você — com 12 revelações do cruzamento do seu nome com sua data de nascimento.</p>
+              </div>
+            </div>
+
+            <!-- Revelações em grid -->
+            <div class="cta-mapa-revelacoes">
+              <div class="cta-mapa-rev-item">
+                <span class="cta-mapa-rev-icon">🌌</span>
+                <p class="cta-mapa-rev-title">Código Existencial</p>
+                <p class="cta-mapa-rev-desc">O número que define sua missão de alma</p>
+              </div>
+              <div class="cta-mapa-rev-item">
+                <span class="cta-mapa-rev-icon">⚡</span>
+                <p class="cta-mapa-rev-title">Bloqueios Energéticos</p>
+                <p class="cta-mapa-rev-desc">O que está travando sua prosperidade agora</p>
+              </div>
+              <div class="cta-mapa-rev-item">
+                <span class="cta-mapa-rev-icon">🗝️</span>
+                <p class="cta-mapa-rev-title">Portais de Destino</p>
+                <p class="cta-mapa-rev-desc">As janelas de oportunidade escritas para você</p>
+              </div>
+              <div class="cta-mapa-rev-item">
+                <span class="cta-mapa-rev-icon">✨</span>
+                <p class="cta-mapa-rev-title">Plano Divino</p>
+                <p class="cta-mapa-rev-desc">Arcanos de influência e o propósito da sua alma</p>
+              </div>
+            </div>
+
+            <!-- Preço do mapa -->
+            <div class="cta-mapa-price-row">
+              <div class="cta-mapa-price-left">
+                <p class="cta-mapa-price-label">Investimento único</p>
+                <p class="cta-mapa-price-old">R$ 197,00</p>
+                <p class="cta-mapa-price-new">R$ 77,77</p>
+              </div>
+              <div>
+                <p class="cta-mapa-economy">ECONOMIA DE R$ 119,23</p>
+                <p class="cta-mapa-economy-sub">acesso imediato · web app exclusivo</p>
+              </div>
+            </div>
+
+            <!-- Botão do mapa -->
+            <button id="ctaMapaBtn" type="button" class="cta-btn-mapa">
+              <span class="cta-btn-mapa-text">
+                ✦ Quero Meu Mapa de Destino ✦
+                <span class="cta-btn-mapa-sub">Revelar o plano escrito para minha alma</span>
+              </span>
+            </button>
+          </div>
+
+        </div><!-- /cta-cards-wrap -->
+
+        <!-- ── RODAPÉ ── -->
+        <div class="cta-footer">
+          <div class="cta-trust-row">
+            <div class="cta-trust-item">
+              <div class="cta-trust-dot"></div>
+              <span>Pagamento seguro</span>
+            </div>
+            <div class="cta-trust-item">
+              <div class="cta-trust-dot"></div>
+              <span>Acesso instantâneo</span>
+            </div>
+            <div class="cta-trust-item">
+              <div class="cta-trust-dot"></div>
+              <span>Garantia de 7 dias</span>
+            </div>
+          </div>
+          <p class="cta-footer-quote">"O que o universo escreveu para você não pode ser apagado — apenas lido."</p>
+        </div>
+
+      </div><!-- /cta-portal-wrapper -->
+    </div>
     </div>
 
   </div>
@@ -1923,264 +2834,8 @@
     if (e.key === 'Enter') handleNameSubmit();
   });
 
-  // ── SUPORTE FLUTUANTE (Instagram) ───────────────────────────────
-  (function() {
-    // ── Estilos do painel e botão ──
-    const style = document.createElement('style');
-    style.textContent = `
-      #support-btn {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        z-index: 9999;
-        height: 44px;
-        padding: 0 16px 0 12px;
-        border-radius: 22px;
-        background: linear-gradient(135deg, #1a0a3e, #2d1060);
-        border: 1px solid rgba(201,168,76,0.45);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 0 20px rgba(124,58,237,0.2), 0 0 40px rgba(201,168,76,0.08);
-        transition: box-shadow 0.3s, transform 0.3s;
-        cursor: pointer;
-        text-decoration: none;
-        white-space: nowrap;
-      }
-      #support-btn:hover {
-        box-shadow: 0 0 30px rgba(201,168,76,0.35), 0 0 60px rgba(124,58,237,0.2);
-        transform: scale(1.04);
-      }
-      #support-btn-label {
-        font-family: 'Cinzel', serif;
-        font-size: 0.62rem;
-        letter-spacing: 0.18em;
-        color: rgba(201,168,76,0.85);
-        text-transform: uppercase;
-        user-select: none;
-      }
-      #support-tip { display: none; }
 
-      /* Painel de suporte */
-      #support-panel {
-        position: fixed;
-        bottom: 80px;
-        right: 24px;
-        z-index: 9997;
-        width: 300px;
-        max-width: calc(100vw - 48px);
-        background: linear-gradient(135deg, rgba(18,8,44,0.98), rgba(11,7,30,0.99));
-        border: 1px solid rgba(201,168,76,0.4);
-        border-radius: 4px;
-        box-shadow: 0 0 40px rgba(124,58,237,0.25), 0 0 80px rgba(201,168,76,0.08), inset 0 1px 0 rgba(201,168,76,0.2);
-        padding: 0;
-        transform: scale(0.9) translateY(12px);
-        transform-origin: bottom right;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34,1.4,0.64,1);
-        overflow: hidden;
-      }
-      #support-panel::before {
-        content: '';
-        position: absolute; top: 0; left: 0; right: 0; height: 1px;
-        background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      }
-      #support-panel.sp-open {
-        opacity: 1;
-        pointer-events: auto;
-        transform: scale(1) translateY(0);
-      }
-      .sp-panel-header {
-        padding: 16px 18px 12px;
-        border-bottom: 1px solid rgba(201,168,76,0.12);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .sp-panel-title {
-        font-family: 'Cinzel', serif;
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
-        color: rgba(201,168,76,0.85);
-      }
-      .sp-panel-close {
-        background: none;
-        border: none;
-        color: rgba(232,224,245,0.3);
-        cursor: pointer;
-        font-size: 0.75rem;
-        padding: 2px 4px;
-        transition: color 0.2s;
-        line-height: 1;
-      }
-      .sp-panel-close:hover { color: rgba(201,168,76,0.6); }
-      .sp-panel-body { padding: 16px 18px 20px; }
-      .sp-reassure {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 0.92rem;
-        color: rgba(232,224,245,0.75);
-        line-height: 1.75;
-        font-style: italic;
-        margin-bottom: 16px;
-        text-align: center;
-      }
-      .sp-divider {
-        width: 100%; height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(201,168,76,0.25), transparent);
-        margin: 14px 0;
-      }
-      .sp-contact-label {
-        font-family: 'Cinzel', serif;
-        font-size: 0.6rem;
-        letter-spacing: 0.2em;
-        color: rgba(201,168,76,0.45);
-        text-align: center;
-        margin-bottom: 12px;
-      }
-      .sp-contact-link {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        background: rgba(124,58,237,0.08);
-        border: 1px solid rgba(201,168,76,0.15);
-        border-radius: 3px;
-        padding: 11px 14px;
-        text-decoration: none;
-        transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
-        margin-bottom: 10px;
-      }
-      .sp-contact-link:hover {
-        border-color: rgba(201,168,76,0.4);
-        background: rgba(124,58,237,0.14);
-        box-shadow: 0 0 18px rgba(201,168,76,0.1);
-      }
-      .sp-contact-icon {
-        width: 32px; height: 32px;
-        border-radius: 50%;
-        background: radial-gradient(circle, rgba(45,16,96,0.9), rgba(11,7,30,0.95));
-        border: 1px solid rgba(201,168,76,0.3);
-        display: flex; align-items: center; justify-content: center;
-        flex-shrink: 0;
-      }
-      .sp-contact-info { flex: 1; min-width: 0; }
-      .sp-contact-name {
-        font-family: 'Cinzel', serif;
-        font-size: 0.68rem;
-        color: rgba(201,168,76,0.9);
-        letter-spacing: 0.06em;
-        margin-bottom: 2px;
-      }
-      .sp-contact-sub {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 0.78rem;
-        color: rgba(232,224,245,0.45);
-        font-style: italic;
-      }
-      .sp-badge {
-        font-family: 'Cinzel', serif;
-        font-size: 0.55rem;
-        letter-spacing: 0.1em;
-        color: rgba(74,222,128,0.8);
-        background: rgba(74,222,128,0.08);
-        border: 1px solid rgba(74,222,128,0.2);
-        border-radius: 10px;
-        padding: 2px 7px;
-        white-space: nowrap;
-      }
-    `;
-    document.head.appendChild(style);
-
-    // ── Botão flutuante ──
-    const btn = document.createElement('button');
-    btn.id = 'support-btn';
-    btn.setAttribute('aria-label', 'Ajuda e Suporte');
-    btn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.9)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-      </svg>
-      <span id="support-btn-label">Ajuda</span>`;
-
-    const tip = document.createElement('div');
-    tip.id = 'support-tip';
-    tip.textContent = 'Ajuda';
-
-    // ── Painel ──
-    const panel = document.createElement('div');
-    panel.id = 'support-panel';
-    panel.innerHTML = `
-      <div class="sp-panel-header">
-        <span class="sp-panel-title">✦ CENTRAL DE APOIO</span>
-        <button class="sp-panel-close" id="sp-panel-close">✕</button>
-      </div>
-      <div class="sp-panel-body">
-        <p class="sp-reassure">
-          Não se preocupe — seu acesso está garantido.<br>
-          Se não foi redirecionado automaticamente após a compra, entraremos em contato ou você pode nos chamar agora. Estamos aqui. ✦
-        </p>
-        <div class="sp-divider"></div>
-        <p class="sp-contact-label">CANAIS DE ATENDIMENTO</p>
-        <a href="https://www.instagram.com/vibe.ancestral?igsh=ajB3M2RuOG9seWtl" target="_blank" rel="noopener noreferrer" class="sp-contact-link">
-          <div class="sp-contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="1" fill="rgba(201,168,76,0.9)" stroke="none"/>
-            </svg>
-          </div>
-          <div class="sp-contact-info">
-            <p class="sp-contact-name">@vibe.ancestral</p>
-            <p class="sp-contact-sub">Instagram · suporte direto</p>
-          </div>
-          <span class="sp-badge">24h</span>
-        </a>
-        <a href="mailto:suporte.lojifystore@gmail.com" class="sp-contact-link">
-          <div class="sp-contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </div>
-          <div class="sp-contact-info">
-            <p class="sp-contact-name">E-mail de suporte</p>
-            <p class="sp-contact-sub">suporte.lojifystore@gmail.com</p>
-          </div>
-        </a>
-        <p style="font-family:'Cormorant Garamond',serif; font-size:0.78rem; color:rgba(201,168,76,0.55); font-style:italic; text-align:center; line-height:1.6; margin-top:4px;">
-          💡 Não recebeu o acesso? Verifique também sua caixa de <strong style="color:rgba(201,168,76,0.75);">spam</strong> — o e-mail de confirmação às vezes cai por lá.
-        </p>
-      </div>
-    `;
-
-    // ── Toggle painel ──
-    let panelOpen = false;
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      panelOpen = !panelOpen;
-      panel.classList.toggle('sp-open', panelOpen);
-    });
-    document.addEventListener('click', e => {
-      if (panelOpen && !panel.contains(e.target)) {
-        panelOpen = false;
-        panel.classList.remove('sp-open');
-      }
-    });
-    panel.addEventListener('click', e => e.stopPropagation());
-
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('status') !== 'desbloqueado') {
-      document.body.appendChild(panel);
-      document.body.appendChild(btn);
-      document.body.appendChild(tip);
-      document.getElementById('sp-panel-close').addEventListener('click', () => {
-        panelOpen = false;
-        panel.classList.remove('sp-open');
-      });
-    }
-  })();
-
-
-    // ── PROVA SOCIAL ─────────────────────────────────────────────────
+  // ── PROVA SOCIAL ─────────────────────────────────────────────────
   (function() {
     const notifications = [
       { icon: '✦', name: 'Aline S.', city: 'São Paulo', msg: 'acabou de entrar no Desafio de 7 Dias', time: 'agora mesmo' },
@@ -2251,73 +2906,55 @@
     }
   })();
 
-  // ── ACESSO AO DESAFIO DE 7 DIAS (Stripe + Supabase) ─────────────
-  const PRODUCT_SLUG_DESAFIO = 'desafio-7-dias';
+  // ── TRILHA DE CONHECIMENTO — Checkout handlers ─────────────────
+  const PRODUCT_SLUG_LIVRO = 'livro-negro-cabala';
+  const PRODUCT_SLUG_MAPA  = 'mapa-cabalistico-pessoal';
 
-  function ljShowUnlockedArea() {
-    ['screen1','loading1','screen2','loading2','screen3','screen5'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'none';
-    });
-    document.querySelector('.stars-bg').style.display = 'block';
-    document.getElementById('areaConteudoDesbloqueado').classList.add('active');
-    window.scrollTo(0, 0);
-  }
-
-  async function ljCheckAccessOnLoad() {
-    const params = new URLSearchParams(window.location.search);
-    const user = await window.LojifyAuth.getCurrentUser();
-
-    if (user) {
-      const ja = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_DESAFIO);
-      if (ja) { ljShowUnlockedArea(); return; }
-    }
-
-    // Voltou do Stripe agora — se ainda não logado, pede login pra checar a compra
-    if (params.get('status') === 'desbloqueado') {
-      if (!user) {
-        window.LojifyModal.open(async () => { await ljCheckAccessOnLoad(); }, 'signin');
-        return;
-      }
-      // Webhook pode levar alguns segundos pra gravar — tenta de novo algumas vezes
-      for (let i = 0; i < 5; i++) {
-        await new Promise(r => setTimeout(r, 1500));
-        const okNow = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_DESAFIO);
-        if (okNow) { ljShowUnlockedArea(); return; }
-      }
-    }
-    // Caso contrário, segue o funil normal (screens 1-5) — comportamento padrão
-  }
-
-  // Botão final → checkout do Desafio de 7 Dias
-  document.getElementById('ctaDesafioBtn').addEventListener('click', async (e) => {
-    const btn = e.currentTarget;
-    btn.style.pointerEvents = 'none';
+  async function iniciarCheckout(slug, btnEl) {
+    if (btnEl) btnEl.style.pointerEvents = 'none';
     try {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_checkout', { currency: 'BRL', value: slug === PRODUCT_SLUG_MAPA ? 77.77 : 22.22, items: [{ item_id: slug }] });
+      }
       const user = await window.LojifyAuth.getCurrentUser();
       if (!user) {
-        window.LojifyModal.open(async () => {
-          await window.LojifyAuth.startCheckout(PRODUCT_SLUG_DESAFIO);
-        });
-        btn.style.pointerEvents = '';
+        window.LojifyModal.open(async () => { await window.LojifyAuth.startCheckout(slug); });
+        if (btnEl) btnEl.style.pointerEvents = '';
         return;
       }
-      const ja = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_DESAFIO);
-      if (ja) { ljShowUnlockedArea(); btn.style.pointerEvents = ''; return; }
-      await window.LojifyAuth.startCheckout(PRODUCT_SLUG_DESAFIO);
+      const jaTem = await window.LojifyAuth.hasPurchased(slug);
+      if (jaTem) {
+        window.location.href = slug === PRODUCT_SLUG_MAPA ? '/mapa' : '/livro';
+        return;
+      }
+      await window.LojifyAuth.startCheckout(slug);
     } catch (err) {
       console.error(err);
-      btn.style.pointerEvents = '';
+      if (btnEl) btnEl.style.pointerEvents = '';
       alert('Não foi possível iniciar o checkout. Tente novamente em instantes.');
     }
+  }
+
+  document.getElementById('ctaLivroBtn').addEventListener('click', (e) => {
+    iniciarCheckout(PRODUCT_SLUG_LIVRO, e.currentTarget);
   });
 
-  // Botão "Já tenho acesso" no topo → login e checa compra
-  document.getElementById('ljDesafioLoginBtn').addEventListener('click', () => {
-    window.LojifyModal.open(async () => { await ljCheckAccessOnLoad(); }, 'signin');
+  document.getElementById('ctaMapaBtn').addEventListener('click', (e) => {
+    iniciarCheckout(PRODUCT_SLUG_MAPA, e.currentTarget);
   });
 
-  ljCheckAccessOnLoad();
+  // Botão "Já tenho acesso" → login
+  const loginBtn = document.getElementById('ljLoginBtn');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      window.LojifyModal.open(async () => {
+        const jaMapa = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_MAPA);
+        if (jaMapa) { window.location.href = '/mapa'; return; }
+        const jaLivro = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_LIVRO);
+        if (jaLivro) { window.location.href = '/livro'; }
+      }, 'signin');
+    });
+  }
 
   // Topbar esconde ao rolar pra baixo, reaparece ao rolar pra cima
   (function () {
@@ -2334,5 +2971,48 @@
     }, { passive: true });
   })();
 </script>
+<!-- ══ BOLHAS FLUTUANTES — Continue a Travessia ══ -->
+<div class="lj-bubbles-float" aria-label="Continue a travessia">
+  <p class="lj-bubbles-float-label">Continue a Travessia</p>
+  <div class="lj-bubbles-float-row">
+    <a href="/mapa" class="lj-bbl" aria-label="Mapa Numerológico">
+      <span class="lj-bbl-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="21" stroke="url(#cGold1)" stroke-width="1.4" opacity="0.55"/>
+          <path d="M24 9 L36 31 L12 31 Z" stroke="url(#cGold1)" stroke-width="1.3" fill="none" opacity="0.85"/>
+          <path d="M24 39 L12 17 L36 17 Z" stroke="url(#cGold1)" stroke-width="1.3" fill="none" opacity="0.55"/>
+          <circle cx="24" cy="24" r="2.4" fill="#c9a84c"/>
+          <defs><linearGradient id="cGold1" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#c9a84c"/><stop offset="1" stop-color="#8a6f2e"/></linearGradient></defs>
+        </svg>
+      </span>
+      <span class="lj-bbl-text">Meu Mapa</span>
+    </a>
+    <a href="/livro" class="lj-bbl" aria-label="O Livro">
+      <span class="lj-bbl-icon">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="21" stroke="url(#cGold2)" stroke-width="1.4" opacity="0.55"/>
+          <rect x="13" y="11" width="17" height="24" rx="2" stroke="url(#cGold2)" stroke-width="1.3" fill="none" opacity="0.85"/>
+          <line x1="17" y1="17" x2="26" y2="17" stroke="url(#cGold2)" stroke-width="1" opacity="0.7"/>
+          <line x1="17" y1="21" x2="26" y2="21" stroke="url(#cGold2)" stroke-width="1" opacity="0.7"/>
+          <circle cx="32" cy="33" r="6" fill="rgba(10,6,8,0.9)" stroke="url(#cGold2)" stroke-width="1.2"/>
+          <path d="M30 33 L32 35 L35 31" stroke="#c9a84c" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <defs><linearGradient id="cGold2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#c9a84c"/><stop offset="1" stop-color="#8a6f2e"/></linearGradient></defs>
+        </svg>
+      </span>
+      <span class="lj-bbl-text">Desvende os Segredos</span>
+    </a>
+  </div>
+</div>
+<style>
+  .lj-bubbles-float { position:fixed; right:16px; bottom:16px; z-index:9999; display:flex; flex-direction:column; align-items:flex-end; gap:8px; pointer-events:none; }
+  .lj-bubbles-float-label { font-family:'Cinzel Decorative','Cinzel',serif; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:rgba(201,168,76,0.75); margin:0 4px 2px 0; text-align:right; text-shadow:0 0 12px rgba(201,168,76,0.3); }
+  .lj-bubbles-float-row { display:flex; gap:10px; pointer-events:all; }
+  .lj-bbl { display:flex; flex-direction:column; align-items:center; gap:5px; text-decoration:none; }
+  .lj-bbl-icon { width:52px; height:52px; background:rgba(10,6,8,0.92); border:1px solid rgba(201,168,76,0.3); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 18px rgba(201,168,76,0.15); transition:transform 0.2s, box-shadow 0.2s; }
+  .lj-bbl-icon svg { width:30px; height:30px; }
+  .lj-bbl:hover .lj-bbl-icon { transform:translateY(-3px); box-shadow:0 0 28px rgba(201,168,76,0.3); }
+  .lj-bbl-text { font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(201,168,76,0.8); text-align:center; max-width:60px; line-height:1.3; }
+</style>
+
 </body>
 </html>
