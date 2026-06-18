@@ -12,8 +12,8 @@
 
 <!-- Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="/lojify-auth.js"></script>
-<script src="/lojify-modal.js"></script>
+<script src="/lojify-auth.js" defer></script>
+<script src="/lojify-modal.js" defer></script>
 
 <style>
 /* ══════════════════════════════════════════════
@@ -4253,11 +4253,23 @@ async function init() {
   }
 }
 
-function comprarMapa() {
+async function comprarMapa() {
   if (typeof window.LojifyAuth === 'undefined') return;
-  window.LojifyModal.open(async () => {
+  try {
+    const user = await window.LojifyAuth.getCurrentUser();
+    if (!user) {
+      window.LojifyModal.open(async () => {
+        await window.LojifyAuth.startCheckout('mapa-cabalistico-pessoal');
+      }, 'signup');
+      return;
+    }
+    const jaTem = await window.LojifyAuth.hasPurchased('mapa-cabalistico-pessoal');
+    if (jaTem) { mostrarTela('form'); return; }
     await window.LojifyAuth.startCheckout('mapa-cabalistico-pessoal');
-  }, 'signup');
+  } catch (err) {
+    console.error('[mapa.html] Erro no checkout:', err);
+    alert('Não foi possível iniciar o checkout. Tente novamente em instantes.');
+  }
 }
 
 function fazerLogin() {
