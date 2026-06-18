@@ -2198,7 +2198,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </svg>
   <h1 class="gate-title">Seu Mapa Cabalístico<br>Pessoal</h1>
   <p class="gate-sub">Este é um acesso exclusivo para quem adquiriu o Mapa Cabalístico Pessoal. Desbloqueie suas 12 revelações agora.</p>
-  <div class="gate-price">R$ 77,77</div>
+  <div style="display:inline-block;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.35);border-radius:3px;padding:3px 12px;margin-bottom:10px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#D4AF37;">✦ Oferta de Lançamento ✦</div>
+  <div style="display:flex;align-items:center;justify-content:center;gap:14px;">
+    <span style="font-size:18px;color:rgba(255,255,255,0.3);text-decoration:line-through;">R$ 77,77</span>
+    <div class="gate-price">R$ 44,44</div>
+  </div>
   <p class="gate-price-desc">pagamento único · acesso vitalício · entrega imediata</p>
   <button class="gate-cta" onclick="comprarMapa()">Desbloquear Meu Mapa Agora</button>
   <p class="gate-login">Já comprou? <a onclick="fazerLogin()">Entrar com sua conta</a></p>
@@ -4577,7 +4581,7 @@ function fecharInsightFinal() {
       </span>
       <span class="lj-bbl-text">Calcule de Graça</span>
     </a>
-    <a href="/livro" class="lj-bbl" aria-label="O Livro: Desvende os Segredos">
+    <a id="mp-livro-bubble" href="/livro-lp" class="lj-bbl" aria-label="O Livro Negro da Cabala">
       <span class="lj-bbl-icon">
         <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="24" cy="24" r="21" stroke="url(#mpGold2)" stroke-width="1.4" opacity="0.55"/>
@@ -4590,7 +4594,7 @@ function fecharInsightFinal() {
           <defs><linearGradient id="mpGold2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#D4AF37"/><stop offset="1" stop-color="#a07c2a"/></linearGradient></defs>
         </svg>
       </span>
-      <span class="lj-bbl-text">Desvende os Segredos</span>
+      <span class="lj-bbl-text">Livro</span>
     </a>
   </div>
 </div>
@@ -4604,6 +4608,45 @@ function fecharInsightFinal() {
   .lj-bbl:hover .lj-bbl-icon { transform:translateY(-3px); box-shadow:0 0 28px rgba(212,175,55,0.32); }
   .lj-bbl-text { font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold,#D4AF37); opacity:0.8; text-align:center; max-width:60px; line-height:1.3; }
 </style>
+
+<!-- Redirecionamento inteligente bubble Livro (mapa.html) -->
+<script>
+(function() {
+  const SLUG = 'livro-negro-cabala';
+  const bubble = document.getElementById('mp-livro-bubble');
+  if (!bubble) return;
+
+  async function _waitAuth(ms=3000) {
+    const start = Date.now();
+    while (!window.LojifyAuth && Date.now()-start < ms)
+      await new Promise(r => setTimeout(r, 100));
+    return window.LojifyAuth || null;
+  }
+
+  bubble.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const auth = await _waitAuth();
+    if (!auth) { window.location.href = '/livro-lp'; return; }
+    const user = await auth.getCurrentUser();
+    if (!user) { window.location.href = '/livro-lp'; return; }
+    const jaTem = await auth.hasPurchased(SLUG);
+    window.location.href = jaTem ? '/livro' : '/livro-lp';
+  });
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const auth = await _waitAuth();
+    if (!auth) return;
+    const user = await auth.getCurrentUser();
+    if (!user) return;
+    const jaTem = await auth.hasPurchased(SLUG).catch(() => false);
+    if (jaTem) {
+      bubble.href = '/livro';
+      const lbl = bubble.querySelector('.lj-bbl-text');
+      if (lbl) lbl.textContent = 'Acessar';
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

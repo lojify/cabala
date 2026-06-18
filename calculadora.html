@@ -2003,8 +2003,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="cta-mapa-price-row">
               <div class="cta-mapa-price-left">
                 <p class="cta-mapa-price-label">Investimento único</p>
-                <p class="cta-mapa-price-old">R$ 197,00</p>
-                <p class="cta-mapa-price-new">R$ 77,77</p>
+                <p class="cta-mapa-price-old">R$ 77,77</p>
+                <p class="cta-mapa-price-new">R$ 44,44</p>
               </div>
               <div>
                 <p class="cta-mapa-economy">ECONOMIA DE R$ 119,23</p>
@@ -2914,7 +2914,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     if (btnEl) btnEl.style.pointerEvents = 'none';
     try {
       if (typeof gtag !== 'undefined') {
-        gtag('event', 'begin_checkout', { currency: 'BRL', value: slug === PRODUCT_SLUG_MAPA ? 77.77 : 22.22, items: [{ item_id: slug }] });
+        gtag('event', 'begin_checkout', { currency: 'BRL', value: slug === PRODUCT_SLUG_MAPA ? 44.44 : 22.22, items: [{ item_id: slug }] });
       }
       const user = await window.LojifyAuth.getCurrentUser();
       if (!user) {
@@ -2987,7 +2987,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </span>
       <span class="lj-bbl-text">Meu Mapa</span>
     </a>
-    <a href="/livro" class="lj-bbl" aria-label="O Livro">
+    <a id="calc-livro-bubble" href="/livro-lp" class="lj-bbl" aria-label="O Livro Negro da Cabala">
       <span class="lj-bbl-icon">
         <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="24" cy="24" r="21" stroke="url(#cGold2)" stroke-width="1.4" opacity="0.55"/>
@@ -2999,7 +2999,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <defs><linearGradient id="cGold2" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#c9a84c"/><stop offset="1" stop-color="#8a6f2e"/></linearGradient></defs>
         </svg>
       </span>
-      <span class="lj-bbl-text">Desvende os Segredos</span>
+      <span class="lj-bbl-text">Livro</span>
     </a>
   </div>
 </div>
@@ -3013,6 +3013,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   .lj-bbl:hover .lj-bbl-icon { transform:translateY(-3px); box-shadow:0 0 28px rgba(201,168,76,0.3); }
   .lj-bbl-text { font-size:8px; letter-spacing:0.1em; text-transform:uppercase; color:rgba(201,168,76,0.8); text-align:center; max-width:60px; line-height:1.3; }
 </style>
+
+<!-- Redirecionamento inteligente bubble Livro (calculadora.html) -->
+<script>
+(function() {
+  const SLUG = 'livro-negro-cabala';
+  const bubble = document.getElementById('calc-livro-bubble');
+  if (!bubble) return;
+
+  async function _waitAuth(ms=3000) {
+    const start = Date.now();
+    while (!window.LojifyAuth && Date.now()-start < ms)
+      await new Promise(r => setTimeout(r, 100));
+    return window.LojifyAuth || null;
+  }
+
+  bubble.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const auth = await _waitAuth();
+    if (!auth) { window.location.href = '/livro-lp'; return; }
+    const user = await auth.getCurrentUser();
+    if (!user) { window.location.href = '/livro-lp'; return; }
+    const jaTem = await auth.hasPurchased(SLUG);
+    window.location.href = jaTem ? '/livro' : '/livro-lp';
+  });
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    const auth = await _waitAuth();
+    if (!auth) return;
+    const user = await auth.getCurrentUser();
+    if (!user) return;
+    const jaTem = await auth.hasPurchased(SLUG).catch(() => false);
+    if (jaTem) {
+      bubble.href = '/livro';
+      const lbl = bubble.querySelector('.lj-bbl-text');
+      if (lbl) lbl.textContent = 'Acessar';
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

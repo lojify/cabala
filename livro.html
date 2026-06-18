@@ -417,7 +417,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="lj-gate-symbol">✦</div>
       <h2>Acesso Bloqueado</h2>
       <p>"O Livro Negro da Cabala — 50 Chaves do Zohar" é um conteúdo exclusivo para quem já garantiu sua cópia.</p>
-      <button id="ljUnlockBtn" class="lj-gate-btn">Desbloquear por R$ 22,22</button>
+      <button id="ljUnlockBtn" class="lj-gate-btn">Ver o Grimório — R$ 22,22</button>
       <button id="ljLoginBtn" class="lj-gate-btn" style="margin-top:12px; background:transparent; border:1px solid var(--gold-dim); color:var(--gold); box-shadow:none;">Já tenho acesso — Entrar</button>
       <a href="/" class="lj-gate-link">Voltar para a página inicial</a>
     </div>
@@ -729,25 +729,8 @@ window.ljRenderBook = render;
     });
 
     unlockBtn.addEventListener('click', async () => {
-        unlockBtn.disabled = true;
-        unlockBtn.textContent = 'Aguarde...';
-        try {
-            const user = await window.LojifyAuth.getCurrentUser();
-            if (!user) {
-                unlockBtn.disabled = false;
-                unlockBtn.textContent = 'Desbloquear por R$ 22,22';
-                window.LojifyModal.open(async () => {
-                    await window.LojifyAuth.startCheckout(PRODUCT_SLUG);
-                });
-                return;
-            }
-            await window.LojifyAuth.startCheckout(PRODUCT_SLUG);
-        } catch (err) {
-            console.error(err);
-            unlockBtn.disabled = false;
-            unlockBtn.textContent = 'Desbloquear por R$ 22,22';
-            alert('Não foi possível iniciar o checkout. Tente novamente em instantes.');
-        }
+        // Redireciona para a LP de vendas do livro
+        window.location.href = '/livro-lp';
     });
 
     checkAccess();

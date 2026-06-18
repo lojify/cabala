@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Livro Negro da Cabala — Grimório das 50 Chaves do Zohar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════════════
+           TOKENS: DARK PREMIUM & ESOTERIC
+        ══════════════════════════════════════════════ */
+        :root {
+            --void:       #080507;
+            --deep:       #120a0e;
+            --grimorio:   #1a1115;
+            --gold:       #cda45e;
+            --gold-bright: #e8c882;
+            --gold-old:   #8a6f3f;
+            --blood:      #4a1010;
+            --ink:        #ece6dc;
+            --ink-dim:    rgba(236,230,220,0.6);
+            --line:       rgba(205,164,94,0.15);
+            --serif:      'Cormorant Garamond', serif;
+            --display:    'Cinzel', serif;
+            --deco:       'Cinzel Decorative', serif;
+        }
+
+        /* ══════════════════════════════════════════════
+           RESET & BASE
+        ══════════════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--void);
+            color: var(--ink);
+            font-family: var(--serif);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════════════
+           ATMOSFERA DE SOMBRAS
+        ══════════════════════════════════════════════ */
+        .shadow-realm {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background: 
+                radial-gradient(circle at 50% -20%, rgba(74,16,16,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(205,164,94,0.05) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(74,16,16,0.1) 0%, transparent 40%);
+        }
+        .vignette {
+            position: fixed; inset: 0; z-index: 1; pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(8,5,7,0.8) 100%);
+        }
+
+        /* ══════════════════════════════════════════════
+           UI ELEMENTS
+        ══════════════════════════════════════════════ */
+        section { position: relative; z-index: 10; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        .btn-ritual {
+            font-family: var(--display);
+            font-size: 13px; letter-spacing: 0.25em; text-transform: uppercase;
+            background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+            color: var(--void);
+            padding: 18px 48px; border: none; border-radius: 2px;
+            cursor: pointer; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-decoration: none; display: inline-block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(205,164,94,0.2);
+            position: relative; overflow: hidden;
+        }
+        .btn-ritual:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(205,164,94,0.3), 0 0 15px rgba(205,164,94,0.2);
+            letter-spacing: 0.3em;
+        }
+        .btn-ritual::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: ritual-shimmer 3s infinite;
+        }
+        @keyframes ritual-shimmer { to { left: 100%; } }
+
+        /* ══════════════════════════════════════════════
+           HERO: O PORTAL DO GRIMÓRIO
+        ══════════════════════════════════════════════ */
+        #hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 120px 24px 80px;
+        }
+        .hero-glifo {
+            width: 140px; height: 140px; margin-bottom: 40px;
+            filter: drop-shadow(0 0 20px rgba(205,164,94,0.3));
+            animation: glifo-float 6s ease-in-out infinite;
+        }
+        @keyframes glifo-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-15px) rotate(5deg); opacity: 1; }
+        }
+
+        .hero-title {
+            font-family: var(--deco);
+            font-size: clamp(32px, 6vw, 60px);
+            font-weight: 700; line-height: 1.1;
+            color: var(--gold-bright); margin-bottom: 24px;
+            text-shadow: 0 0 30px rgba(0,0,0,0.8);
+        }
+        .hero-subtitle {
+            font-family: var(--serif);
+            font-size: clamp(18px, 2.5vw, 26px);
+            font-style: italic; color: var(--ink-dim);
+            max-width: 800px; margin: 0 auto 48px;
+            line-height: 1.6;
+        }
+
+        /* ══════════════════════════════════════════════
+           O CORAÇÃO DO MISTÉRIO: EXPLICAÇÃO DO ZOHAR
+        ══════════════════════════════════════════════ */
+        #zohar-explicacao {
+            padding: 100px 24px; background: rgba(18,10,14,0.4);
+        }
+        .section-title {
+            text-align: center; font-family: var(--display);
+            font-size: clamp(24px, 4vw, 36px); color: var(--gold);
+            margin-bottom: 60px; letter-spacing: 0.15em; text-transform: uppercase;
+        }
+        .zohar-content {
+            max-width: 900px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;
+        }
+        .zohar-text h3 {
+            font-family: var(--display); font-size: 24px; color: var(--gold-bright);
+            margin-bottom: 20px;
+        }
+        .zohar-text p {
+            font-size: 16px; color: var(--ink-dim); line-height: 1.8; margin-bottom: 18px;
+        }
+        .zohar-text strong { color: var(--gold); }
+        .zohar-image {
+            width: 100%; height: auto; border-radius: 2px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+            border: 1px solid var(--line);
+        }
+
+        /* ══════════════════════════════════════════════
+           OS 4 PILARES DA TRANSFORMAÇÃO
+        ══════════════════════════════════════════════ */
+        #pilares { padding: 100px 24px; background: var(--void); }
+        .pillars-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px; max-width: 1200px; margin: 0 auto;
+        }
+        .pillar-card {
+            background: var(--grimorio);
+            border: 1px solid var(--line);
+            padding: 50px 30px; border-radius: 2px;
+            text-align: center; transition: all 0.5s ease;
+            position: relative;
+        }
+        .pillar-card:hover {
+            border-color: var(--gold);
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+        .pillar-card::before {
+            content: ''; position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(205,164,94,0.05); pointer-events: none;
+        }
+
+        .pillar-symbol {
+            width: 80px; height: 80px; margin: 0 auto 24px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .pillar-symbol svg { width: 100%; height: 100%; }
+
+        .pillar-card h3 {
+            font-family: var(--display); font-size: 18px; color: var(--gold-bright);
+            margin-bottom: 16px; letter-spacing: 0.1em;
+        }
+        .pillar-card p { font-size: 15px; color: var(--ink-dim); line-height: 1.7; }
+
+        /* ══════════════════════════════════════════════
+           MOCKUP SECTION: O GRIMÓRIO DIGITAL
+        ══════════════════════════════════════════════ */
+        #preview { padding: 120px 24px; text-align: center; background: rgba(18,10,14,0.6); }
+        .mockup-gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; max-width: 1200px; margin: 0 auto;
+        }
+        .mockup-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            border: 1px solid var(--line);
+            transition: transform 0.4s ease;
+        }
+        .mockup-item:hover {
+            transform: scale(1.02);
+        }
+        .mockup-img {
+            width: 100%; height: auto; display: block;
+        }
+
+        .preview-text {
+            margin-top: 60px; max-width: 700px; margin-left: auto; margin-right: auto;
+        }
+        .preview-text h2 {
+            font-family: var(--display); font-size: 28px; color: var(--gold-bright);
+            margin-bottom: 24px;
+        }
+
+        /* ══════════════════════════════════════════════
+           O QUE VOCÊ RECEBE
+        ══════════════════════════════════════════════ */
+        #revelacoes { padding: 100px 24px; background: var(--void); }
+        .benefits-list {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; max-width: 1000px; margin: 0 auto;
+        }
+        .benefit-item { display: flex; gap: 20px; align-items: flex-start; }
+        .benefit-mark {
+            font-size: 24px; color: var(--gold); font-family: var(--display);
+            margin-top: -5px; flex-shrink: 0;
+        }
+        .benefit-content h4 {
+            font-family: var(--display); font-size: 16px; color: var(--gold-bright);
+            margin-bottom: 8px; letter-spacing: 0.05em;
+        }
+        .benefit-content p { font-size: 14px; color: var(--ink-dim); line-height: 1.6; }
+
+        /* ══════════════════════════════════════════════
+           OFERTA FINAL: O INVESTIMENTO NA ALMA
+        ══════════════════════════════════════════════ */
+        #oferta {
+            padding: 120px 24px; text-align: center;
+            background: linear-gradient(to bottom, var(--void), var(--deep));
+        }
+        .price-tag {
+            font-family: var(--deco); font-size: 72px; color: var(--gold);
+            margin: 40px 0; text-shadow: 0 0 40px rgba(205,164,94,0.4);
+        }
+        .guarantee {
+            max-width: 600px; margin: 40px auto; padding: 30px;
+            border: 1px solid var(--line); background: rgba(205,164,94,0.03);
+            font-style: italic; color: var(--ink-dim); font-size: 15px;
+        }
+
+        /* ══════════════════════════════════════════════
+           FOOTER
+        ══════════════════════════════════════════════ */
+        footer {
+            padding: 60px 24px; border-top: 1px solid var(--line);
+            text-align: center; font-size: 12px; color: var(--ink-dim);
+            letter-spacing: 0.1em; text-transform: uppercase;
+        }
+
+        /* ══════════════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════════════ */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 36px; }
+            .price-tag { font-size: 54px; }
+            .pillar-card { padding: 40px 20px; }
+            .zohar-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="shadow-realm"></div>
+    <div class="vignette"></div>
+
+    <!-- ══════════════════════════════════════════════
+         HERO SECTION
+    ══════════════════════════════════════════════ -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-glifo">
+                <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="48" stroke="url(#goldGrad)" stroke-width="0.5" stroke-dasharray="4 4"/>
+                    <path d="M50 5 L95 82 L5 82 Z" stroke="url(#goldGrad)" stroke-width="1" opacity="0.8"/>
+                    <path d="M50 95 L5 18 L95 18 Z" stroke="url(#goldGrad)" stroke-width="1" opacity="0.4"/>
+                    <circle cx="50" cy="50" r="5" fill="var(--gold)"/>
+                    <defs>
+                        <linearGradient id="goldGrad" x1="0" y1="0" x2="100" y2="100">
+                            <stop offset="0" stop-color="var(--gold)"/>
+                            <stop offset="1" stop-color="var(--gold-bright)"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="hero-title">O Livro Negro da Cabala</h1>
+            <p class="hero-subtitle">As 50 Chaves Sagradas do Zohar para Desvendar os Mistérios da Existência e Manifestar seu Destino.</p>
+            <div style="margin-bottom: 50px;">
+                <a href="#oferta" class="btn-ritual" onclick="iniciarCheckoutLivro()">Reivindicar Minhas Chaves</a>
+            </div>
+            <p style="font-family: var(--display); font-size: 11px; letter-spacing: 0.3em; color: var(--gold-old); text-transform: uppercase;">Sabedoria Ancestral • Experiência Digital • Transformação Real</p>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         O CORAÇÃO DO MISTÉRIO: O QUE É O ZOHAR
+    ══════════════════════════════════════════════ -->
+    <section id="zohar-explicacao">
+        <div class="container">
+            <h2 class="section-title">O Coração do Mistério</h2>
+            <div class="zohar-content">
+                <div class="zohar-text">
+                    <h3>O Que é o Zohar?</h3>
+                    <p>O <strong>Zohar</strong> é o texto mais sagrado da Cabala — uma obra mística que revela os segredos ocultos da criação e da natureza divina. Escrito em aramaico há mais de 800 anos, ele permaneceu guardado em mosteiros e bibliotecas secretas, acessível apenas aos iniciados.</p>
+                    <p>Mas o Zohar não é um livro de filosofia abstrata. É um <strong>manual prático de transformação pessoal</strong>. Cada passagem contém camadas de significado que, quando decodificadas, revelam como alinhar sua mente, emoções e ações com as forças criativas do universo.</p>
+                    <p>As <strong>50 Chaves</strong> são os 50 portais principais deste conhecimento — cada uma abrindo uma dimensão diferente da realidade que você não consegue ver, mas que está constantemente moldando sua vida.</p>
+                </div>
+                <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663768929436/qMHgNDOhzPMnctYW.png" alt="O Zohar - Grimório Digital" class="zohar-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         POR QUE ISSO IMPORTA AGORA
+    ══════════════════════════════════════════════ -->
+    <section id="pilares">
+        <div class="container">
+            <h2 class="section-title">Os 4 Portais do Conhecimento</h2>
+            <div class="pillars-grid">
+                
+                <!-- Caminhos & Sorte -->
+                <div class="pillar-card">
+                    <div class="pillar-symbol">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30 50 Q50 20 70 50 T70 80" stroke="var(--gold)" fill="none" stroke-width="1.5">
+                                <animate attributeName="stroke-dasharray" from="0,150" to="150,0" dur="3s" infinite/>
+                            </path>
+                            <circle cx="50" cy="50" r="2" fill="var(--gold-bright)"/>
+                            <path d="M50 10 V30 M50 70 V90 M10 50 H30 M70 50 H90" stroke="var(--gold-old)" stroke-width="0.5" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h3>Caminhos & Sorte</h3>
+                    <p>Remova os véus que impedem sua visão e alinhe-se com as correntes de oportunidade que fluem do mundo superior. Descubra por que certas portas se abrem e outras permanecem fechadas.</p>
+                </div>
+
+                <!-- Abundância -->
+                <div class="pillar-card">
+                    <div class="pillar-symbol">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="35" y="35" width="30" height="30" stroke="var(--gold)" fill="none" stroke-width="1.5" transform="rotate(45 50 50)">
+                                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="10s" repeatCount="indefinite"/>
+                            </rect>
+                            <circle cx="50" cy="50" r="15" stroke="var(--gold-bright)" fill="none" stroke-width="0.5" opacity="0.6"/>
+                            <path d="M50 20 L50 80 M20 50 L80 50" stroke="var(--gold-old)" stroke-width="0.5" opacity="0.4"/>
+                        </svg>
+                    </div>
+                    <h3>Abundância</h3>
+                    <p>Construa o "Kli" (vaso) espiritual capaz de sustentar e expandir a prosperidade material e espiritual. A Cabala revela que a pobreza é uma ilusão criada pela mente que não sabe receber.</p>
+                </div>
+
+                <!-- Proteção -->
+                <div class="pillar-card">
+                    <div class="pillar-symbol">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M50 15 L80 35 V65 L50 85 L20 65 V35 Z" stroke="var(--gold)" fill="none" stroke-width="1.5"/>
+                            <path d="M50 30 L65 40 V60 L50 70 L35 60 V40 Z" stroke="var(--gold-bright)" fill="none" stroke-width="1" opacity="0.7">
+                                <animate attributeName="opacity" values="0.3;1;0.3" dur="4s" repeatCount="indefinite"/>
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Proteção</h3>
+                    <p>Erga um escudo de luz inabalável contra influências externas e cultive a paz interior que nada pode perturbar. Aprenda os nomes e símbolos que afastam energia negativa.</p>
+                </div>
+
+                <!-- Magnetismo -->
+                <div class="pillar-card">
+                    <div class="pillar-symbol">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="10" stroke="var(--gold)" fill="none" stroke-width="1.5"/>
+                            <circle cx="50" cy="50" r="25" stroke="var(--gold-old)" fill="none" stroke-width="0.5" stroke-dasharray="2 4"/>
+                            <path d="M50 5 Q80 50 50 95 Q20 50 50 5" stroke="var(--gold-bright)" fill="none" stroke-width="0.8" opacity="0.6">
+                                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="6s" repeatCount="indefinite"/>
+                            </path>
+                        </svg>
+                    </div>
+                    <h3>Magnetismo</h3>
+                    <p>Desperte a centelha divina em seu interior e torne-se um farol para relacionamentos e conexões de alta frequência. Atraia pessoas, oportunidades e sincronicidades.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         MOCKUP SECTION: O GRIMÓRIO DIGITAL
+    ══════════════════════════════════════════════ -->
+    <section id="preview">
+        <div class="container">
+            <h2 class="section-title">A Experiência do Grimório</h2>
+            <div class="mockup-gallery">
+                <div class="mockup-item">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663768929436/qMHgNDOhzPMnctYW.png" alt="Digital Grimoire Experience" class="mockup-img">
+                </div>
+                <div class="mockup-item">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663768929436/bKchnMvOOcrOMcCE.png" alt="Mobile Experience" class="mockup-img">
+                </div>
+                <div class="mockup-item">
+                    <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663768929436/ZykXaJYScqttJjFX.png" alt="Ancient Wisdom Digital Study" class="mockup-img">
+                </div>
+            </div>
+            <div class="preview-text">
+                <h2>Uma Imersão Total no Conhecimento</h2>
+                <p style="font-size: 18px; color: var(--ink-dim); line-height: 1.8;">Não é apenas um livro, é um portal. Cada uma das 50 chaves foi projetada para ser uma jornada meditativa, combinando sabedoria ancestral com uma interface digital de luxo. Você não apenas lê — você <strong>experimenta</strong> a transformação.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         O QUE VOCÊ RECEBE EXATAMENTE
+    ══════════════════════════════════════════════ -->
+    <section id="revelacoes">
+        <div class="container">
+            <h2 class="section-title">O Que o Grimório Revela</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-mark">✦</div>
+                    <div class="benefit-content">
+                        <h4>50 Chaves do Zohar Decodificadas</h4>
+                        <p>Acesso completo e vitalício às chaves que estiveram ocultas por gerações. Cada uma com a citação original do Zohar, a interpretação cabalística profunda e a aplicação prática para sua vida.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-mark">✦</div>
+                    <div class="benefit-content">
+                        <h4>Sigilos Visuais Dinâmicos</h4>
+                        <p>Cada chave possui um sigilo único que atua como um gatilho subconsciente para a ativação da sabedoria contida. Estes símbolos foram cuidadosamente desenhados para ressoar com as frequências cabalísticas.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-mark">✦</div>
+                    <div class="benefit-content">
+                        <h4>Ações de Poder Diárias</h4>
+                        <p>Práticas simples, mas profundas, para aplicar o conhecimento imediatamente e ver a realidade se moldar. Cada ação é um ritual discreto que você pode fazer em qualquer lugar.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-mark">✦</div>
+                    <div class="benefit-content">
+                        <h4>Decretos de Ativação Precisos</h4>
+                        <p>Fórmulas verbais precisas para sintonizar sua frequência mental com a energia de cada portal. Estas não são afirmações genéricas — são decretos baseados na linguagem sagrada da Cabala.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-mark">✦</div>
+                    <div class="benefit-content">
+                        <h4>Interface Premium & Intuitiva</h4>
+                        <p>Navegue pelas 50 chaves com facilidade. Salve suas favoritas, anote insights pessoais e retorne exatamente onde parou. Tudo em uma experiência visual de luxo que honra a sacralidade do conteúdo.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-mark">✦</div>
+                    <div class="benefit-content">
+                        <h4>Acesso Vitalício & Atualizações</h4>
+                        <p>Compre uma vez, acesse para sempre. Conforme novas interpretações e práticas forem descobertas, você receberá atualizações gratuitamente. Seu investimento cresce com o tempo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         POR QUE AGORA
+    ══════════════════════════════════════════════ -->
+    <section id="urgencia" style="padding: 100px 24px; background: rgba(18,10,14,0.4); text-align: center;">
+        <div class="container">
+            <h2 class="section-title">Por Que Agora?</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <p style="font-size: 18px; color: var(--ink-dim); line-height: 1.8; margin-bottom: 30px;">
+                    Vivemos em uma época de <strong>ruído constante</strong>. Redes sociais, notícias, pressões externas — tudo competindo pela sua atenção. Sua mente está fragmentada, sua energia dispersa, e você sente que algo está faltando.
+                </p>
+                <p style="font-size: 18px; color: var(--ink-dim); line-height: 1.8; margin-bottom: 30px;">
+                    O Zohar oferece o oposto: <strong>clareza, foco e propósito</strong>. Quando você entende as leis ocultas que governam a realidade, você deixa de ser uma vítima das circunstâncias e se torna um <strong>criador consciente</strong> de sua vida.
+                </p>
+                <p style="font-size: 18px; color: var(--gold-bright); line-height: 1.8; font-style: italic;">
+                    "O conhecimento da Cabala é um direito de nascimento. Você apenas esqueceu que o possuía."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════
+         OFERTA FINAL
+    ══════════════════════════════════════════════ -->
+    <section id="oferta">
+        <div class="container">
+            <p style="font-family: var(--display); letter-spacing: 0.4em; color: var(--gold-old); text-transform: uppercase;">Oferta de Acesso Imediato</p>
+            <h2 class="hero-title" style="margin-top: 20px;">Inicie Sua Travessia</h2>
+            <div class="price-tag">R$ 22,22</div>
+            <p style="color: var(--ink-dim); margin-bottom: 20px; font-size: 16px;">Pagamento único. Acesso vitalício. Conhecimento eterno.</p>
+            <p style="color: var(--ink-dim); margin-bottom: 40px; font-size: 14px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Este é o investimento mais baixo que você pode fazer em sua transformação pessoal. Menos que uma refeição. Mais que uma vida inteira de sabedoria.
+            </p>
+            
+            <button class="btn-ritual" onclick="iniciarCheckoutLivro()">Desbloquear o Grimório</button>
+
+            <div class="guarantee">
+                <strong>Garantia de 7 Dias:</strong> "O conhecimento da Cabala é um direito de nascimento. Se em 7 dias você sentir que estas chaves não ressoam com sua alma, devolveremos seu investimento integralmente, sem perguntas."
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 O Livro Negro da Cabala • Todos os direitos reservados</p>
+        <p style="margin-top: 10px; opacity: 0.5; font-size: 10px;">Desenvolvido com ✦ para buscadores da verdade</p>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════
+         MENU FLUTUANTE (bolhas de navegação)
+    ══════════════════════════════════════════════ -->
+    <div class="lj-bubbles" aria-label="Continue a travessia">
+      <p class="lj-bubbles-label">Continue a Travessia</p>
+      <div class="lj-bubbles-row">
+        <a href="/calculadora" class="lj-bubble" aria-label="Calculadora Cabalística Gratuita">
+          <span class="lj-bubble-icon">
+            <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="15" cy="15" r="13" stroke="#D4AF37" stroke-width="1.2"/>
+              <path d="M10 10h10M10 15h10M10 20h6" stroke="#D4AF37" stroke-width="1.3" stroke-linecap="round"/>
+              <circle cx="21" cy="20" r="2.5" fill="#D4AF37" opacity=".7"/>
+            </svg>
+          </span>
+          <span class="lj-bubble-text">Calcule de Graça</span>
+        </a>
+        <a href="/" class="lj-bubble" aria-label="Mapa Cabalístico">
+          <span class="lj-bubble-icon">
+            <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="15,3 27,22 3,22" fill="none" stroke="#D4AF37" stroke-width="1.2"/>
+              <circle cx="15" cy="15" r="4" fill="none" stroke="#D4AF37" stroke-width="1"/>
+            </svg>
+          </span>
+          <span class="lj-bubble-text">Mapa</span>
+        </a>
+      </div>
+    </div>
+    <style>
+      .lj-bubbles { position:fixed; right:16px; bottom:16px; z-index:9999; display:flex; flex-direction:column; align-items:flex-end; gap:8px; pointer-events:none; }
+      .lj-bubbles-label { font-family:'Cinzel',serif; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#D4AF37; opacity:0.75; margin:0 4px 2px 0; text-align:right; text-shadow:0 0 12px rgba(212,175,55,0.35); }
+      .lj-bubbles-row { display:flex; gap:10px; pointer-events:all; }
+      .lj-bubble { display:flex; flex-direction:column; align-items:center; gap:5px; text-decoration:none; }
+      .lj-bubble-icon { width:52px; height:52px; background:rgba(5,5,16,0.92); border:1px solid rgba(212,175,55,0.35); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 0 18px rgba(212,175,55,0.18); transition:transform 0.2s, box-shadow 0.2s; }
+      .lj-bubble-icon svg { width:30px; height:30px; }
+      .lj-bubble:hover .lj-bubble-icon { transform:translateY(-3px); box-shadow:0 0 28px rgba(212,175,55,0.35); }
+      .lj-bubble-text { font-family:'Cinzel',serif; font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:#D4AF37; opacity:0.8; text-align:center; max-width:60px; line-height:1.3; }
+    </style>
+
+    <!-- Scripts base — carregados primeiro para os inline abaixo poderem usar window.LojifyAuth -->
+    <script src="/lojify-auth.js"></script>
+    <script src="/lojify-modal.js"></script>
+
+    <!-- ══════════════════════════════════════════════
+         INTEGRAÇÃO TÉCNICA
+    ══════════════════════════════════════════════ -->
+    <script>
+        const PRODUCT_SLUG_LIVRO = 'livro-negro-cabala';
+
+        /* Atualiza todos os botões de CTA para "Acessar" quando já comprado */
+        function _marcarComoComprado() {
+            document.querySelectorAll('.btn-ritual[onclick*="iniciarCheckoutLivro"]').forEach(el => {
+                el.textContent = 'Acessar o Grimório';
+                el.onclick = null;
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = '/livro';
+                });
+            });
+            // Link da hero também
+            const heroLink = document.querySelector('a.btn-ritual[href="#oferta"]');
+            if (heroLink) {
+                heroLink.textContent = 'Acessar o Grimório';
+                heroLink.href = '/livro';
+                heroLink.onclick = null;
+            }
+        }
+
+        async function iniciarCheckoutLivro() {
+            try {
+                // GA4 event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'begin_checkout', { 
+                        currency: 'BRL', value: 22.22, 
+                        items: [{ item_id: PRODUCT_SLUG_LIVRO, item_name: 'O Livro Negro da Cabala', price: 22.22 }] 
+                    });
+                }
+
+                const user = await window.LojifyAuth.getCurrentUser();
+                if (!user) {
+                    window.LojifyModal.open(async () => {
+                        const jaTem2 = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_LIVRO);
+                        if (jaTem2) { window.location.href = '/livro'; return; }
+                        await window.LojifyAuth.startCheckout(PRODUCT_SLUG_LIVRO);
+                    });
+                    return;
+                }
+
+                const jaTem = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_LIVRO);
+                if (jaTem) { window.location.href = '/livro'; return; }
+
+                await window.LojifyAuth.startCheckout(PRODUCT_SLUG_LIVRO);
+            } catch (err) {
+                console.error(err);
+                alert('Erro ao iniciar portal de pagamento. Tente novamente.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // GA4 view_item
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'view_item', { 
+                    currency: 'BRL', value: 22.22, 
+                    items: [{ item_id: PRODUCT_SLUG_LIVRO, item_name: 'O Livro Negro da Cabala', price: 22.22 }] 
+                });
+            }
+
+            // Verificação de compra: se já comprou, redireciona direto para /livro
+            try {
+                const user = await window.LojifyAuth.getCurrentUser();
+                if (user) {
+                    const jaTem = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_LIVRO);
+                    if (jaTem) {
+                        window.location.replace('/livro');
+                        return;
+                    }
+                    // Logado mas não comprou: atualiza estado visual dos botões (opcional)
+                }
+            } catch(e) { console.warn('Verificação de compra falhou:', e); }
+        });
+    </script>
+</body>
+</html>

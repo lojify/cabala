@@ -1709,7 +1709,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     para revelar o código que foi instalado em você e o que está bloqueando sua realidade.
   </p>
   <a href="#chamado" class="hero-cta" id="heroCta">✦ &nbsp; Desbloqueie Seu Destino &nbsp; ✦</a>
-  <p class="hero-price">Acesso imediato · R$ 77,77 · Para almas que buscam além do óbvio</p>
+  <p class="hero-price">Oferta de Lançamento · R$ 44,44 · Para almas que buscam além do óbvio</p>
 
   <div class="hero-scroll" aria-hidden="true">▼ &nbsp; role para descobrir &nbsp; ▼</div>
 </section>
@@ -2363,7 +2363,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="chamado-box reveal">
       <span class="chamado-price-label">Acesso completo e imediato</span>
-      <div class="chamado-price"><sup>R$</sup>77<sub>,77</sub></div>
+      <div style="display:inline-block;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.35);border-radius:3px;padding:3px 12px;margin-bottom:8px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.25em;text-transform:uppercase;color:#D4AF37;">✦ Oferta de Lançamento ✦</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
+        <span style="font-family:'Cinzel',serif;font-size:18px;color:rgba(255,255,255,0.3);text-decoration:line-through;">R$ 77,77</span>
+        <div class="chamado-price"><sup>R$</sup>44<sub>,44</sub></div>
+      </div>
       <p class="chamado-price-desc">pagamento único · acesso vitalício</p>
       <div class="chamado-itens">
         <div class="chamado-item">12 revelações cabalísticas personalizadas</div>
@@ -2387,7 +2391,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="#">Política de Privacidade</a>
     <a href="#">Termos de Uso</a>
     <a href="#">Suporte</a>
-    <a href="/livro">O Livro Negro da Cabala</a>
+    <a href="/livro-lp">O Livro Negro da Cabala</a>
     <a href="/calculadora">Calculadora Cabalística</a>
   </div>
 </footer>
@@ -2396,7 +2400,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="floating-cta" id="floatingCta">
   <a href="#chamado">
     ✦ &nbsp; Desbloqueie Seu Destino
-    <span class="floating-cta-price">R$ 77,77</span>
+    <span class="floating-cta-price">R$ 44,44</span>
   </a>
 </div>
 
@@ -2515,7 +2519,7 @@ async function iniciarCheckoutMapa(btnEl) {
   try {
     // GA4 event: begin_checkout
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'begin_checkout', { currency: 'BRL', value: 77.77, items: [{ item_id: PRODUCT_SLUG_MAPA, item_name: 'Mapa Numerológico Cabalístico', price: 77.77 }] });
+      gtag('event', 'begin_checkout', { currency: 'BRL', value: 44.44, items: [{ item_id: PRODUCT_SLUG_MAPA, item_name: 'Mapa Numerológico Cabalístico', price: 44.44 }] });
     }
     const user = await window.LojifyAuth.getCurrentUser();
     if (!user) {
@@ -2539,7 +2543,7 @@ async function iniciarCheckoutMapa(btnEl) {
 document.addEventListener('DOMContentLoaded', () => {
   // GA4 — view_item
   if (typeof gtag !== 'undefined') {
-    gtag('event', 'view_item', { currency: 'BRL', value: 77.77, items: [{ item_id: PRODUCT_SLUG_MAPA, item_name: 'Mapa Numerológico Cabalístico', price: 77.77 }] });
+    gtag('event', 'view_item', { currency: 'BRL', value: 44.44, items: [{ item_id: PRODUCT_SLUG_MAPA, item_name: 'Mapa Numerológico Cabalístico', price: 44.44 }] });
   }
 
   ['heroCta', 'mainCta'].forEach(id => {
@@ -2561,7 +2565,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (params.get('status') === 'desbloqueado') {
     // GA4 — purchase
     if (typeof gtag !== 'undefined') {
-      gtag('event', 'purchase', { currency: 'BRL', value: 77.77, transaction_id: params.get('session_id') || '', items: [{ item_id: PRODUCT_SLUG_MAPA, item_name: 'Mapa Numerológico Cabalístico', price: 77.77 }] });
+      gtag('event', 'purchase', { currency: 'BRL', value: 44.44, transaction_id: params.get('session_id') || '', items: [{ item_id: PRODUCT_SLUG_MAPA, item_name: 'Mapa Numerológico Cabalístico', price: 44.44 }] });
     }
     (async () => {
       const user = await window.LojifyAuth.getCurrentUser();
@@ -2700,7 +2704,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <span class="lj-bubble-text">Calcule de Graça</span>
     </a>
     <!-- Story: Livro -->
-    <a href="/livro" class="lj-bubble" aria-label="O Livro: Desvende os Segredos">
+    <a id="lj-livro-bubble" href="/livro-lp" class="lj-bubble" aria-label="O Livro Negro da Cabala">
       <span class="lj-bubble-icon">
         <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="24" cy="24" r="21" stroke="url(#ljGoldB2)" stroke-width="1.4" opacity="0.55"/>
@@ -2717,7 +2721,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </defs>
         </svg>
       </span>
-      <span class="lj-bubble-text">Desvende os Segredos</span>
+      <span class="lj-bubble-text">Livro</span>
     </a>
   </div>
 </div>
@@ -2731,6 +2735,60 @@ document.addEventListener('DOMContentLoaded', () => {
   .lj-bubble:hover .lj-bubble-icon { transform:translateY(-3px); box-shadow:0 0 28px rgba(212,175,55,0.35); }
   .lj-bubble-text { font-family:'Cinzel',serif; font-size:8px; letter-spacing:0.12em; text-transform:uppercase; color:#D4AF37; opacity:0.8; text-align:center; max-width:60px; line-height:1.3; }
 </style>
+
+<!-- Redirecionamento inteligente do bubble "Livro" -->
+<script>
+(function() {
+  const PRODUCT_SLUG_LIVRO = 'livro-negro-cabala';
+  const livroBubble = document.getElementById('lj-livro-bubble');
+  if (!livroBubble) return;
+
+  // Intercept click: verifica compra antes de redirecionar
+  livroBubble.addEventListener('click', async function(e) {
+    e.preventDefault();
+    try {
+      // LojifyAuth pode ainda não estar disponível se scripts carregam depois
+      // Aguarda disponibilidade com timeout
+      let tentativas = 0;
+      while (!window.LojifyAuth && tentativas < 20) {
+        await new Promise(r => setTimeout(r, 100));
+        tentativas++;
+      }
+      if (!window.LojifyAuth) { window.location.href = '/livro-lp'; return; }
+
+      const user = await window.LojifyAuth.getCurrentUser();
+      if (!user) { window.location.href = '/livro-lp'; return; }
+
+      const jaTem = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_LIVRO);
+      window.location.href = jaTem ? '/livro' : '/livro-lp';
+    } catch(err) {
+      console.warn('Redirecionamento livro fallback:', err);
+      window.location.href = '/livro-lp';
+    }
+  });
+
+  // Ao carregar: verifica silenciosamente se já comprou e atualiza o href
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      let tentativas = 0;
+      while (!window.LojifyAuth && tentativas < 30) {
+        await new Promise(r => setTimeout(r, 100));
+        tentativas++;
+      }
+      if (!window.LojifyAuth) return;
+      const user = await window.LojifyAuth.getCurrentUser();
+      if (user) {
+        const jaTem = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_LIVRO);
+        if (jaTem) {
+          livroBubble.href = '/livro';
+          const label = livroBubble.querySelector('.lj-bubble-text');
+          if (label) label.textContent = 'Acessar';
+        }
+      }
+    } catch(e) { /* silencioso */ }
+  });
+})();
+</script>
 
 </body>
 </html>
