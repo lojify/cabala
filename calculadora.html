@@ -31,6 +31,21 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* ── PERFORMANCE: pausar animações em telas ocultas ── */
+  .screen:not(.active) * {
+    animation-play-state: paused !important;
+  }
+  /* Promover elementos animados para camada própria (evita repaint do layout) */
+  .cta-nebula, .cta-star, .number-circle, .spinner, .spinner-outer,
+  .cta-portal-ring, .cta-portal-dot, .cta-btn-livro, .cta-btn-mapa,
+  .btn-checkout, .btn-continuar.unlocked {
+    will-change: transform, opacity;
+  }
+  /* Reduzir blur pesado em mobile (maior impacto na lentidão) */
+  @media (max-width: 640px) {
+    .cta-nebula { filter: blur(30px) !important; }
+  }
+
   body {
     font-family: 'Cormorant Garamond', serif;
     background: var(--bg);
@@ -224,9 +239,11 @@
     font-size: 2.5rem;
     color: var(--gold-light);
     text-shadow: 0 0 20px rgba(201,168,76,0.7);
-    animation: pulse-glow 2s ease-in-out infinite, float 3s ease-in-out infinite;
+    animation: float 3s ease-in-out infinite;
     background: radial-gradient(circle, rgba(45,16,96,0.8), rgba(11,7,30,0.95));
     position: relative;
+    box-shadow: 0 0 30px rgba(201,168,76,0.3);
+    will-change: transform;
   }
   .number-circle::before {
     content: '';
@@ -455,8 +472,8 @@
     animation: pulse-cta 2.5s ease-in-out infinite;
   }
   @keyframes pulse-cta {
-    0%, 100% { box-shadow: 0 0 24px rgba(201,168,76,.25); }
-    50% { box-shadow: 0 0 44px rgba(201,168,76,.45), 0 0 80px rgba(124,58,237,.2); }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
   }
   .btn-continuar.unlocked::before {
     content: '';
@@ -548,8 +565,8 @@
   .reading-cta { text-align: center; padding: 28px 0 12px; }
 
   @keyframes pulse-btn {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(201,168,76,0.3); }
-    50% { transform: scale(1.02); box-shadow: 0 0 50px rgba(201,168,76,0.5), 0 0 80px rgba(124,58,237,0.25); }
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
   }
   .btn-checkout {
     display: block;
@@ -569,43 +586,14 @@
     overflow: hidden;
     cursor: pointer;
     width: 100%;
+    box-shadow: 0 0 30px rgba(201,168,76,0.3);
+    will-change: transform;
   }
   .btn-checkout::before {
     content: '';
     position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
     animation: shimmer-move 2s ease-in-out infinite;
-  }
-
-  /* ══ BARRA SUPERIOR (cross-link + acesso) ══ */
-  .lj-topbar {
-    position: fixed; top: 12px; right: 12px; z-index: 9980;
-    display: flex; gap: 8px; align-items: center;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
-  .lj-topbar.lj-hide {
-    transform: translateY(-140%);
-    opacity: 0;
-  }
-  .lj-topbar a, .lj-topbar button {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: rgba(11,7,30,0.7);
-    border: 1px solid var(--gold-dim);
-    color: var(--gold-light);
-    padding: 8px 14px;
-    border-radius: 2px;
-    text-decoration: none;
-    cursor: pointer;
-    backdrop-filter: blur(4px);
-    transition: border-color .2s, color .2s;
-  }
-  .lj-topbar a:hover, .lj-topbar button:hover { border-color: var(--gold); color: var(--gold); }
-  @media (max-width: 640px) {
-    .lj-topbar { top: 8px; right: 8px; gap: 6px; }
-    .lj-topbar a, .lj-topbar button { font-size: 0.55rem; padding: 6px 10px; }
   }
 
   /* ══ ÁREA DESBLOQUEADA ══ */
@@ -728,11 +716,6 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WV32MJQP"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-
-<div class="lj-topbar">
-  <a href="/">✦ Mapa Numerológico Cabalístico</a>
-  <button id="ljLoginBtn" type="button">Já tenho acesso</button>
-</div>
 
 <div class="stars-bg"></div>
 
@@ -1143,12 +1126,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           to   { opacity:1; transform:scale(1) translateY(0); }
         }
         @keyframes cta-card-glow-livro {
-          0%,100% { box-shadow: 0 0 40px rgba(201,168,76,.1), 0 0 80px rgba(124,58,237,.05), inset 0 0 40px rgba(201,168,76,.02); }
-          50%      { box-shadow: 0 0 60px rgba(201,168,76,.22), 0 0 120px rgba(124,58,237,.12), inset 0 0 60px rgba(201,168,76,.05); }
+          0%,100% { opacity: 0.95; }
+          50%      { opacity: 1; }
         }
         @keyframes cta-card-glow-mapa {
-          0%,100% { box-shadow: 0 0 50px rgba(45,212,191,.08), 0 0 100px rgba(124,58,237,.06), inset 0 0 50px rgba(45,212,191,.02); }
-          50%      { box-shadow: 0 0 80px rgba(45,212,191,.2), 0 0 160px rgba(124,58,237,.15), inset 0 0 80px rgba(45,212,191,.06); }
+          0%,100% { opacity: 0.95; }
+          50%      { opacity: 1; }
         }
         @keyframes cta-portal-pulse {
           0%,100% { transform:scale(1); opacity:.6; }
@@ -2315,8 +2298,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <!-- ═══════════════════════════ FIM DA ÁREA DESBLOQUEADA ═══════════════════════════ -->
 
-<script src="/lojify-auth.js"></script>
-<script src="/lojify-modal.js"></script>
+<script src="/lojify-auth.js" defer></script>
+<script src="/lojify-modal.js" defer></script>
+<script src="/lojify-topbar.js" defer></script>
 <script>
   // ── NUMEROLOGIA ────────────────────────────────────────────────
   const nameTable = {
@@ -2914,70 +2898,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   })();
 
-  // ── TRILHA DE CONHECIMENTO — Checkout handlers ─────────────────
+  // ── TRILHA DE CONHECIMENTO — CTA handlers (LP redirect) ────────
   const PRODUCT_SLUG_LIVRO = 'livro-negro-cabala';
   const PRODUCT_SLUG_MAPA  = 'mapa-cabalistico-pessoal';
 
-  async function iniciarCheckout(slug, btnEl) {
-    if (btnEl) btnEl.style.pointerEvents = 'none';
-    try {
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'begin_checkout', { currency: 'BRL', value: slug === PRODUCT_SLUG_MAPA ? 44.44 : 22.22, items: [{ item_id: slug }] });
-      }
-      const user = await window.LojifyAuth.getCurrentUser();
-      if (!user) {
-        window.LojifyModal.open(async () => { await window.LojifyAuth.startCheckout(slug); });
-        if (btnEl) btnEl.style.pointerEvents = '';
-        return;
-      }
-      const jaTem = await window.LojifyAuth.hasPurchased(slug);
-      if (jaTem) {
-        window.location.href = slug === PRODUCT_SLUG_MAPA ? '/mapa' : '/livro';
-        return;
-      }
-      await window.LojifyAuth.startCheckout(slug);
-    } catch (err) {
-      console.error(err);
-      if (btnEl) btnEl.style.pointerEvents = '';
-      alert('Não foi possível iniciar o checkout. Tente novamente em instantes.');
+  // LP de cada produto
+  const LP_LIVRO = '/livro-lp';
+  const LP_MAPA  = '/';   // index.html é a landing page do Mapa
+
+  // Redireciona para a LP do produto, disparando evento GA4
+  function irParaLP(slug, lpUrl) {
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'select_item', {
+        currency: 'BRL',
+        value: slug === PRODUCT_SLUG_MAPA ? 44.44 : 22.22,
+        items: [{ item_id: slug }]
+      });
     }
+    window.location.href = lpUrl;
   }
 
-  document.getElementById('ctaLivroBtn').addEventListener('click', (e) => {
-    iniciarCheckout(PRODUCT_SLUG_LIVRO, e.currentTarget);
+  document.getElementById('ctaLivroBtn').addEventListener('click', () => {
+    irParaLP(PRODUCT_SLUG_LIVRO, LP_LIVRO);
   });
 
-  document.getElementById('ctaMapaBtn').addEventListener('click', (e) => {
-    iniciarCheckout(PRODUCT_SLUG_MAPA, e.currentTarget);
+  document.getElementById('ctaMapaBtn').addEventListener('click', () => {
+    irParaLP(PRODUCT_SLUG_MAPA, LP_MAPA);
   });
 
-  // Botão "Já tenho acesso" → login
-  const loginBtn = document.getElementById('ljLoginBtn');
-  if (loginBtn) {
-    loginBtn.addEventListener('click', () => {
-      window.LojifyModal.open(async () => {
-        const jaMapa = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_MAPA);
-        if (jaMapa) { window.location.href = '/mapa'; return; }
-        const jaLivro = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_LIVRO);
-        if (jaLivro) { window.location.href = '/livro'; }
-      }, 'signin');
-    });
-  }
-
-  // Topbar esconde ao rolar pra baixo, reaparece ao rolar pra cima
-  (function () {
-    const topbarEl = document.querySelector('.lj-topbar');
-    let lastY = window.scrollY;
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y > lastY && y > 80) {
-        topbarEl.classList.add('lj-hide');
-      } else {
-        topbarEl.classList.remove('lj-hide');
-      }
-      lastY = y;
-    }, { passive: true });
-  })();
+  // Topbar gerenciado por lojify-topbar.js
 </script>
 <!-- ══ BOLHAS FLUTUANTES — Continue a Travessia ══ -->
 <div class="lj-bubbles-float" aria-label="Continue a travessia">

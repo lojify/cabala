@@ -1678,9 +1678,13 @@ footer {
   })(window,document,"script","dataLayer","GTM-WV32MJQP");</script>
   <!-- End Google Tag Manager -->
 
-  <!-- ══ LOJIFY — Auth + Modal ══ -->
+  <!-- ══ LOJIFY — Auth + Modal + Topbar ══ -->
   <script src="/lojify-auth.js" defer></script>
   <script src="/lojify-modal.js" defer></script>
+  <script src="/lojify-topbar.js" defer
+    data-product="mapa-cabalistico-pessoal"
+    data-access-url="/mapa"
+    data-buy-url="/"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2530,6 +2534,18 @@ function toggleFaq(btn) {
 /* ══ PRODUTO SLUG ══ */
 const PRODUCT_SLUG_MAPA = 'mapa-cabalistico-pessoal';
 
+/* ══ WAIT AUTH — garante que lojify-auth.js (defer) já carregou ══ */
+function _waitAuth(ms) {
+  return new Promise((resolve) => {
+    if (window.LojifyAuth) return resolve(window.LojifyAuth);
+    const deadline = Date.now() + (ms || 5000);
+    const iv = setInterval(() => {
+      if (window.LojifyAuth) { clearInterval(iv); resolve(window.LojifyAuth); }
+      else if (Date.now() > deadline) { clearInterval(iv); resolve(null); }
+    }, 80);
+  });
+}
+
 /* ══ CHECKOUT HANDLER ══ */
 async function iniciarCheckoutMapa(btnEl) {
   if (btnEl) btnEl.style.pointerEvents = 'none';
@@ -2538,17 +2554,29 @@ async function iniciarCheckoutMapa(btnEl) {
     if (typeof gtag !== 'undefined') {
       gtag('event', 'begin_checkout', { currency: 'BRL', value: 44.44, items: [{ item_id: PRODUCT_SLUG_MAPA, item_name: 'Mapa Numerológico Cabalístico', price: 44.44 }] });
     }
-    const user = await window.LojifyAuth.getCurrentUser();
+
+    // Aguarda o script de auth estar pronto (resolve race condition com defer)
+    const auth = await _waitAuth(5000);
+    if (!auth) {
+      // Auth não carregou — abre modal quando disponível ou redireciona
+      if (btnEl) btnEl.style.pointerEvents = '';
+      alert('Carregando sistema de acesso, tente novamente em instantes.');
+      return;
+    }
+
+    const user = await auth.getCurrentUser();
     if (!user) {
       window.LojifyModal.open(async () => {
-        await window.LojifyAuth.startCheckout(PRODUCT_SLUG_MAPA);
+        const has = await auth.hasPurchased(PRODUCT_SLUG_MAPA).catch(() => false);
+        if (has) { window.location.href = '/mapa'; return; }
+        await auth.startCheckout(PRODUCT_SLUG_MAPA);
       });
       if (btnEl) btnEl.style.pointerEvents = '';
       return;
     }
-    const jaTem = await window.LojifyAuth.hasPurchased(PRODUCT_SLUG_MAPA);
+    const jaTem = await auth.hasPurchased(PRODUCT_SLUG_MAPA);
     if (jaTem) { window.location.href = '/mapa'; return; }
-    await window.LojifyAuth.startCheckout(PRODUCT_SLUG_MAPA);
+    await auth.startCheckout(PRODUCT_SLUG_MAPA);
   } catch (err) {
     console.error(err);
     if (btnEl) btnEl.style.pointerEvents = '';
@@ -2585,7 +2613,9 @@ document.addEventListener('DOMContentLoaded', () => {
       gtag('event', 'purchase', { currency: 'BRL', value: 44.44, transaction_id: params.get('session_id') || '', items: [{ item_id: PRODUCT_SLUG_MAPA, item_name: 'Mapa Numerológico Cabalístico', price: 44.44 }] });
     }
     (async () => {
-      const user = await window.LojifyAuth.getCurrentUser();
+      const auth = await _waitAuth(5000);
+      if (!auth) return;
+      const user = await auth.getCurrentUser();
       if (!user) { window.LojifyModal.open(async () => { window.location.href = '/mapa'; }, 'signin'); return; }
       window.location.href = '/mapa';
     })();
