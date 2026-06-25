@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /mapa
+Disallow: /livro
+
+Sitemap: https://vibeancestral.com/sitemap.xml
