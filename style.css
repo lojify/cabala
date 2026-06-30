@@ -1,0 +1,235 @@
+/* ====================================================================
+   KAOS//STUDIO — PORTFÓLIO CRIATIVO
+   Caos controlado: vanguarda, contraste forte, animações 100% GPU
+   (apenas transform + opacity). Nada de width/height/top/left animados.
+==================================================================== */
+
+:root{
+  /* paleta — contraste forte, complementares puxando pro vibrante */
+  --bg:        #0A0A0F;
+  --bg-soft:   #121218;
+  --fg:        #F5F3EE;
+  --fg-dim:    #9C99A8;
+  --acc-pink:  #FF2E6E;
+  --acc-cyan:  #00F0FF;
+  --acc-yellow:#FFE600;
+
+  --font-display: "Unbounded", "Arial Black", sans-serif;
+  --font-body:    "Space Grotesk", sans-serif;
+  --font-mono:    "JetBrains Mono", monospace;
+
+  --ease-out: cubic-bezier(.16,1,.3,1);
+  --dur-fast: .25s;
+  --dur-med:  .6s;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--font-body);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+button{ font-family:inherit; background:none; border:0; color:inherit; cursor:pointer; }
+.mono{ font-family:var(--font-mono); letter-spacing:.04em; text-transform:uppercase; font-size:.72rem; }
+
+/* esconde cursor nativo só quando o customizado está ativo (classe via JS) */
+body.has-custom-cursor, body.has-custom-cursor *{ cursor:none !important; }
+
+/* ====================== TEXTURA DE GRÃO ====================== */
+.grain-overlay{
+  position:fixed; inset:0; z-index:9000; pointer-events:none;
+  background:url("assets/img/grain.svg");
+  opacity:.5; mix-blend-mode:overlay;
+  will-change:opacity;
+}
+
+/* ====================== LOADER ====================== */
+.loader{
+  position:fixed; inset:0; z-index:9999;
+  background:var(--bg);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.5rem;
+  transform:translateZ(0);
+  will-change:opacity;
+}
+.loader__glitch{
+  font-family:var(--font-display); font-size:clamp(1.4rem,5vw,2.6rem);
+  color:var(--fg); position:relative;
+}
+.loader__bar{ width:200px; height:2px; background:var(--bg-soft); overflow:hidden; }
+.loader__bar i{ display:block; height:100%; width:0%; background:var(--acc-pink); will-change:transform; }
+body:not(.is-loading) .loader{ pointer-events:none; }
+
+/* ====================== CURSOR CUSTOMIZADO ====================== */
+.cursor{
+  position:fixed; top:0; left:0; z-index:8000; pointer-events:none;
+  will-change:transform; mix-blend-mode:difference;
+}
+.cursor__dot{
+  position:absolute; top:-3px; left:-3px; width:6px; height:6px;
+  background:var(--acc-yellow); border-radius:50%;
+}
+.cursor__ring{
+  position:absolute; top:-22px; left:-22px; width:44px; height:44px;
+  border:1.5px solid var(--fg); border-radius:50%;
+  transform:scale(1); opacity:0; will-change:transform,opacity;
+}
+.cursor__label{
+  position:absolute; top:26px; left:-30px; width:100px; text-align:center;
+  font-family:var(--font-mono); font-size:.65rem; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--acc-yellow); opacity:0; will-change:transform,opacity;
+}
+.cursor.is-active .cursor__ring{ opacity:1; }
+.cursor.is-active .cursor__label{ opacity:1; }
+.cursor.is-pixel .cursor__ring{ border-radius:0; border-color:var(--acc-pink); }
+
+.cursor-trail{
+  position:fixed; inset:0; z-index:7999; pointer-events:none; mix-blend-mode:screen;
+}
+
+/* ====================== HUD / NAV FIXA ====================== */
+.hud{
+  position:fixed; top:0; left:0; right:0; z-index:500;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:1.4rem clamp(1.2rem,4vw,3rem);
+  will-change:transform;
+}
+.hud__logo{
+  font-family:var(--font-display); font-size:1rem; letter-spacing:.02em;
+}
+.hud__logo span{ color:var(--acc-pink); }
+.hud__nav{ display:flex; gap:clamp(1rem,2vw,2.2rem); }
+.hud__navItem{ font-family:var(--font-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; opacity:.8; transition:opacity var(--dur-fast); }
+.hud__navItem:hover, .hud__navItem:focus-visible{ opacity:1; color:var(--acc-cyan); }
+
+.hud__audio{ display:flex; align-items:center; gap:.6rem; }
+.hud__audioBars{ display:flex; align-items:flex-end; gap:2px; height:14px; }
+.hud__audioBars i{ width:3px; background:var(--acc-yellow); height:30%; will-change:transform; transform-origin:bottom; }
+.hud__audioText{ font-family:var(--font-mono); font-size:.65rem; letter-spacing:.06em; }
+.hud__audio[aria-pressed="true"] .hud__audioText::after{ content:""; }
+
+.hud__progress{
+  position:absolute; bottom:-1px; left:0; height:2px; width:100%;
+  background:rgba(245,243,238,.08);
+}
+.hud__progress i{
+  display:block; height:100%; width:0%;
+  background:linear-gradient(90deg,var(--acc-pink),var(--acc-cyan));
+  will-change:transform;
+}
+
+/* ====================== TRILHA HORIZONTAL ======================
+   Técnica: o wrapper tem altura = N * 100vh (espaço de "scroll" vertical);
+   o track interno é fixado/pinado e se move em X conforme o GSAP
+   ScrollTrigger interpreta o progresso do scroll vertical do wrapper. */
+.track-wrapper{ position:relative; }
+.track{
+  display:flex;
+  height:100vh;
+  width:max-content;
+  will-change:transform;
+}
+.panel{
+  position:relative;
+  width:100vw; height:100vh;
+  flex:0 0 auto;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:clamp(1.5rem,6vw,6rem);
+  overflow:hidden;
+}
+.panel__eyebrow{ color:var(--acc-cyan); margin-bottom:1rem; }
+.panel__title{ color:var(--acc-pink); margin-bottom:2.5rem; }
+.panel__desc{ max-width:30ch; color:var(--fg-dim); font-size:1.05rem; line-height:1.5; margin-top:1.6rem; }
+
+/* ---------- intro ---------- */
+.panel--intro{ background:radial-gradient(120% 120% at 20% 20%, var(--bg-soft), var(--bg) 60%); }
+.glitch-title{
+  font-family:var(--font-display); font-weight:900;
+  font-size:clamp(2.6rem,9vw,7rem); line-height:.95; margin:0;
+  position:relative; color:var(--fg);
+}
+.glitch-title__line{ display:block; font-style:normal; color:var(--acc-pink); }
+.glitch-title__line--alt{ color:var(--acc-cyan); }
+.glitch-title--small{ font-size:clamp(2rem,7vw,4.2rem); margin:1.2rem 0 2rem; }
+
+/* camadas de glitch via pseudo-elementos (acionadas por classe .is-glitching no JS) */
+.glitch-title.is-glitching::before,
+.glitch-title.is-glitching::after{
+  content:attr(data-text);
+  position:absolute; top:0; left:0; width:100%;
+  will-change:transform, opacity; opacity:.85;
+}
+.glitch-title.is-glitching::before{ color:var(--acc-pink); transform:translate3d(3px,0,0); mix-blend-mode:screen; }
+.glitch-title.is-glitching::after{ color:var(--acc-cyan); transform:translate3d(-3px,0,0); mix-blend-mode:screen; }
+
+.scroll-cue{ display:inline-flex; align-items:center; gap:.6rem; margin-top:3rem; }
+.scroll-cue__arrow{ display:inline-block; will-change:transform; }
+
+/* ---------- work ---------- */
+.panel--work{ background:var(--bg-soft); align-items:flex-start; }
+.work-grid{ display:flex; gap:clamp(1rem,2vw,2.4rem); align-items:flex-end; }
+.work-card{ width:min(46vw,300px); }
+.work-card__media{
+  width:100%; aspect-ratio:9/11; overflow:hidden;
+  border:1px solid rgba(245,243,238,.12);
+  background:var(--bg);
+}
+.distort-img{
+  width:100%; height:100%; object-fit:cover;
+  will-change:transform, filter;
+  transform-origin:center;
+}
+.work-card__title{ font-family:var(--font-display); font-size:1rem; margin:1rem 0 .3rem; }
+.work-card__tag{ color:var(--fg-dim); }
+
+/* ---------- about ---------- */
+.panel--about{ background:var(--bg); }
+.about-text{ max-width:36ch; font-size:clamp(1.1rem,2vw,1.5rem); line-height:1.5; color:var(--fg); }
+.about-list{ list-style:none; padding:0; margin:2.4rem 0 0; max-width:420px; }
+.about-list li{ display:flex; justify-content:space-between; padding:.7rem 0; border-bottom:1px solid rgba(245,243,238,.12); color:var(--fg-dim); }
+.about-list li span:first-child{ color:var(--fg); }
+
+/* ---------- marquee ---------- */
+.panel--marquee{ width:60vw; background:var(--acc-pink); justify-content:center; padding:0; }
+.marquee{ overflow:hidden; width:100%; }
+.marquee__track{
+  display:flex; white-space:nowrap; will-change:transform;
+  font-family:var(--font-display); font-size:clamp(2.4rem,8vw,6rem); color:var(--bg);
+}
+
+/* ---------- contact ---------- */
+.panel--contact{ background:var(--bg-soft); }
+.contact-link{ font-family:var(--font-mono); font-size:clamp(1rem,2.4vw,1.4rem); color:var(--acc-yellow); display:inline-block; }
+.contact-social{ display:flex; gap:1.6rem; margin-top:2rem; }
+.contact-social a{ color:var(--fg-dim); }
+.contact-social a:hover{ color:var(--acc-cyan); }
+.contact-footer{ margin-top:4rem; color:var(--fg-dim); }
+
+/* ====================== RESPONSIVO / MOBILE ======================
+   Em telas pequenas a trilha horizontal vira scroll vertical nativo
+   (mais previsível em touch) — controlado também via JS (isMobile). */
+@media (max-width:767px){
+  .hud__nav{ display:none; }
+  .track{ flex-direction:column; height:auto; width:100%; }
+  .panel{ width:100%; height:auto; min-height:100vh; padding:5rem 1.4rem; }
+  .panel--marquee{ width:100%; min-height:30vh; }
+  .work-grid{ flex-direction:column; }
+  .work-card{ width:100%; }
+  .cursor, .cursor-trail{ display:none; }
+}
+
+/* ====================== PREFERS-REDUCED-MOTION ======================
+   Desativa TODA animação complexa: só opacity simples permanece. */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  .cursor, .cursor-trail, .grain-overlay{ display:none; }
+  .track{ flex-direction:column; height:auto; width:100%; transform:none !important; }
+  .panel{ width:100%; height:auto; min-height:auto; }
+  .distort-img{ filter:none !important; transform:none !important; }
+  .marquee__track{ transform:none !important; }
+}
